@@ -1,0 +1,13 @@
+.card {
+    width: 18rem;
+    margin-top: 3rem;
+    margin-right: 2rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 1px 10px 0 rgba(0,0,0,0.05),0 6px 10px 0 rgba(0,0,0,0.05);
+    .card-title{
+      text-align: center;
+    }
+    .card-text{
+      text-align: start;
+    }
+  }

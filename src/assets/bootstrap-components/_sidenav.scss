@@ -1,0 +1,25 @@
+.side-nav {
+    display: list-item;
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    height: 100vh;
+
+    background: fade-out(#283d3b, 0.6);    
+    .nav-link {
+        font-size: $font-size-md;
+        font-weight: $font-weight-semibold;
+        color: hsla(0, 0%, 100%, 0.7);
+        padding: 1rem 0.75rem;
+        border-top: 3px solid transparent;
+        border-bottom: 3px solid transparent;
+        &:hover,
+        &.active {
+            border-bottom: 3px solid $white;
+            color: $white;
+            @include media-breakpoint-down(sm) {
+                border-bottom: 3px solid transparent;
+            }
+        }
+    }
+}
