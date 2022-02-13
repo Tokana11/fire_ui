@@ -12,7 +12,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
-export default function ResponsiveDialog({ id, type, deleteTruck, deleteRepair, deleteFueling, deleteService, deleteMessage }) {
+export default function DeleteDialog({ id, type, deleteTruck, deleteRepair, deleteFueling, deleteService, deleteMessage }) {
 
     const [ open, setOpen ] = useState(false);
     const theme = useTheme();

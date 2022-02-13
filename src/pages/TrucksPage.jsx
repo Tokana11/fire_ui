@@ -103,7 +103,7 @@ export default function TrucksPage() {
             id: '1',
             regNumber: 'РВ6923РМ',
             structure: "01РСПБЗН",
-            description:"Доливане на експлоатационни течности",
+            description: "Доливане на експлоатационни течности",
             engineOil: "Repsol 10W40",
             engineOilVol: 3,
             hydolicOil: "NHL 75W80",
@@ -121,23 +121,23 @@ export default function TrucksPage() {
             tyres: "Laufen 19.5",
             mileage: 158656,
             date: '01.12.2021',
-            filters:{
+            filters: {
                 oilFilter: "AMSOIL Oil Filter",
                 oilFilterQuantity: 2,
                 airFilter: "Air filter",
                 airFilterQuantity: 1,
-                
+
             },
         },
         {
             id: '2',
             regNumber: 'РВ1837РР',
             structure: "01РСПБЗН",
-            description:"Смяна на двиг. масло",
+            description: "Смяна на двиг. масло",
             engineOil: "Castrol 5W30",
             engineOilVol: 35,
             hydolicOil: "",
-            hydolicOilVol: 0 ,
+            hydolicOilVol: 0,
             differentialOil: "",
             differentialOilVol: 0,
             transmissinOil: "TransM OIL",
@@ -151,7 +151,7 @@ export default function TrucksPage() {
             tyres: "Laufen 19.5",
             mileage: 158656,
             date: '15.12.2021',
-            filters:{
+            filters: {
                 type: "blala"
             },
         },
@@ -176,7 +176,7 @@ export default function TrucksPage() {
             tyres: "Laufen 19.5",
             mileage: 158656,
             date: '02.12.2021',
-            filters:{
+            filters: {
                 type: "blala"
             },
         },
@@ -201,7 +201,7 @@ export default function TrucksPage() {
             tyres: "Laufen 19.5",
             mileage: 158656,
             date: '01.11.2021',
-            filters:{
+            filters: {
                 type: "blala"
             },
         },
@@ -226,7 +226,7 @@ export default function TrucksPage() {
             tyres: "Laufen 19.5",
             mileage: 158656,
             date: '18.12.2021',
-            filters:{
+            filters: {
                 type: "blala"
             },
         },
@@ -251,7 +251,7 @@ export default function TrucksPage() {
             tyres: "Laufen 19.5",
             mileage: 158656,
             date: '20.04.2021',
-            filters:{
+            filters: {
                 type: "blala"
             },
         },
@@ -276,7 +276,7 @@ export default function TrucksPage() {
             tyres: "Laufen 19.5",
             mileage: 158656,
             date: '13.03.2021',
-            filters:{
+            filters: {
                 type: "blala"
             },
         },
@@ -301,7 +301,7 @@ export default function TrucksPage() {
             tyres: "Laufen 19.5",
             mileage: 158656,
             date: '11.03.2020',
-            filters:{
+            filters: {
                 oilFilter: "Маслен филтър",
                 oilFilterQuantity: 2
             },
@@ -449,8 +449,18 @@ export default function TrucksPage() {
         setCards(cards.filter((card) => card.id !== id));
     }
 
+    function editTruck(truck) {
+        setCards(cards.map((card)=>{
+            if(card.id === truck.id){
+                card=truck;
+                return card;
+            }
+            return card;
+        }))
+    }
+
     function deleteService(id) {
-        setServices(services.filter((service)=> service.id !== id));
+        setServices(services.filter((service) => service.id !== id));
     }
 
     function deleteRepair(id) {
@@ -472,6 +482,7 @@ export default function TrucksPage() {
             <Outlet context={{
                 cards: cards.filter((card) => card[ `${criteria}` ].toLowerCase().includes(query.toLowerCase())),
                 deleteTruck,
+                editTruck,
                 repairs: repairs.filter((repair) => repair[ `${criteria}` ].toLowerCase().includes(query.toLowerCase())),
                 deleteRepair,
                 fuelings: fuelings.filter((fueling) => fueling[ `${criteria}` ].toLowerCase().includes(query.toLocaleLowerCase())),

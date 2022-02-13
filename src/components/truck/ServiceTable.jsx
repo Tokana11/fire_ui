@@ -1,73 +1,11 @@
-// import React from 'react';
-// import { Button, ButtonGroup, Table } from "react-bootstrap";
-// import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
-// import CreateOutlinedIcon from '@mui/icons-material/CreateOutlined';
-
-
-// export default function ServiceTable() {
-//     return (
-//         <Table hover bordered responsive="lg">
-//             <thead>
-//                 <tr>
-//                     <th>№</th>
-//                     <th>Автомобил</th>
-//                     <th>Двиг. масло</th>
-//                     <th>V/л.</th>
-//                     <th>Хидр. масло</th>
-//                     <th>V/л.</th>
-//                     <th>Масло помпа</th>
-//                     <th>V/л.</th>
-//                     <th>Дифернц. масло</th>
-//                     <th>V/л.</th>
-//                     <th>Трансм. масло.</th>
-//                     <th>V/л.</th>
-//                     <th>Спирачна т-ст</th>
-//                     <th>V/л.</th>
-//                     <th>Антифриз</th>
-//                     <th>V/л.</th>
-//                     <th>Километраж</th>
-//                     <th>Опции</th>
-//                 </tr>
-//             </thead>
-//             <tbody>
-//                 <tr>
-//                     <td>1</td>
-//                     <td>Table cell</td>
-//                     <td>Table cell</td>
-//                     <td>Table cell</td>
-//                     <td>Table cell</td>
-//                     <td>Table cell</td>
-//                     <td>Table cell</td>
-//                     <td>Table cell</td>
-//                     <td>Table cell</td>
-//                     <td>Table cell</td>
-//                     <td>Table cell</td>
-//                     <td>Table cell</td>
-//                     <td>Table cell</td>
-//                     <td>Table cell</td>
-//                     <td>Table cell</td>
-//                     <td>Table cell</td>
-//                     <td>Table cell</td>
-//                     <td>
-//                         <ButtonGroup size={"sm"}>
-//                             <Button variant="outline-primary">
-//                                 <CreateOutlinedIcon />
-//                             </Button>{' '}
-//                             <Button variant="outline-danger">
-//                                 <DeleteOutlinedIcon />
-//                             </Button>{' '}
-//                         </ButtonGroup>
-//                     </td>
-//                 </tr>
-//             </tbody>
-//         </Table>
-//     );
-// }
 import React from 'react';
 import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
 import CreateOutlinedIcon from '@mui/icons-material/CreateOutlined';
 import DeleteDialog from '../truck/DeleteDialog';
+import IconButton from '@mui/material/IconButton';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -79,9 +17,7 @@ import Paper from '@mui/material/Paper';
 import { Button, ButtonGroup } from "react-bootstrap";
 import { useOutletContext } from 'react-router-dom';
 
-import IconButton from '@mui/material/IconButton';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+
 
 function Row({ service, deleteService }) {
 
@@ -121,7 +57,7 @@ function Row({ service, deleteService }) {
                 <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
                     <Collapse in={open} timeout="auto" unmountOnExit>
 
-                    <Box sx={{ margin: 1 }}>
+                        <Box sx={{ margin: 1 }}>
                             <Typography variant="h6" gutterBottom component="div">
                                 Филтри:
                             </Typography>

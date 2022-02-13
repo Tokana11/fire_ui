@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, ListGroup, Col, Row, Button } from "react-bootstrap";
+import EditTruckDialog from '../truck/EditTruckDialog';
 import Image from "../../assets/images/fireTruck.png";
-import CreateOutlinedIcon from '@mui/icons-material/CreateOutlined';
 import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
 
 import { useOutletContext } from 'react-router-dom';
@@ -14,7 +14,7 @@ function SingleTruckCard(props) {
     } = props.card;
 
     const { deleteTruck } = useOutletContext();
-
+    const {editTruck} = useOutletContext();
 
 
     return (
@@ -53,9 +53,11 @@ function SingleTruckCard(props) {
                 <Card.Body>
                     <Row>
                         <Col>
-                            <Button variant="info" size="sm">
-                                <CreateOutlinedIcon /> Редак.
-                            </Button>
+                           <EditTruckDialog 
+                            card={props.card}
+                            editTruck={editTruck}
+                            id={props.id}
+                           />
                         </Col>
                         <Col>
                             <DeleteDialog id={id}
