@@ -10,12 +10,12 @@ import DeleteDialog from '../truck/DeleteDialog';
 
 function SingleTruckCard(props) {
     const {
-        id, structure, regNumber, brand, model, mileage, vinNumber, engineHoursMeter, insuranceNumber
+        id, structure, regNumber, brand, model, mileage, vinNumber, engineHoursMeter, insuranceNumber, tehchInspectionDate
     } = props.card;
 
-    const { deleteTruck } = useOutletContext();
     const {editTruck} = useOutletContext();
-
+    const { deleteTruck } = useOutletContext();
+    
 
     return (
         <>
@@ -42,6 +42,8 @@ function SingleTruckCard(props) {
                         <b>Вин №:</b> {vinNumber}
                         <br />
                         <b>Застраховка:</b> {insuranceNumber}
+                        <br />
+                        <b>Тех. преглед:</b> {tehchInspectionDate}
                     </Card.Text>
                 </Card.Body>
                 <ListGroup className="list-group-flush">

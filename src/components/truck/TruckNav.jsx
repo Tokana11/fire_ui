@@ -24,7 +24,7 @@ function TruckNav() {
                 <BuildIcon /> Ремонти
             </Nav.Link >
             <Nav.Link style={{ color: "gray" }} href="/trucks/fueling" active={pathname === '/trucks/fueling'}>
-                < LocalGasStationIcon /> Зарядки
+                < LocalGasStationIcon /> Гориво
             </Nav.Link>
         </Nav >
     )

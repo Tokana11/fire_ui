@@ -17,7 +17,8 @@ export default function TrucksPage() {
             mileage: "32879",
             vinNumber: "VIN123456",
             engineHoursMeter: "332.6",
-            insuranceNumber: "789456123"
+            insuranceNumber: "789456123",
+            tehchInspectionDate: "19/02/2021"
         },
         {
             id: "2",
@@ -28,7 +29,8 @@ export default function TrucksPage() {
             mileage: "28745",
             vinNumber: "VIN1234567",
             engineHoursMeter: "206.3",
-            insuranceNumber: "98745612"
+            insuranceNumber: "98745612",
+            tehchInspectionDate: "22/03/2021"
         },
         {
             id: "3",
@@ -39,7 +41,8 @@ export default function TrucksPage() {
             mileage: "27999",
             vinNumber: "VIN123456879",
             engineHoursMeter: "258.3",
-            insuranceNumber: "324567798"
+            insuranceNumber: "324567798",
+            tehchInspectionDate: "30/07/2021"
         },
         {
             id: "4",
@@ -50,7 +53,8 @@ export default function TrucksPage() {
             mileage: "111258",
             vinNumber: "VIN12345699",
             engineHoursMeter: "381.3",
-            insuranceNumber: "789654123"
+            insuranceNumber: "789654123",
+            tehchInspectionDate: "01/01/2022"
         },
         {
             id: "5",
@@ -61,7 +65,8 @@ export default function TrucksPage() {
             mileage: "25900",
             vinNumber: "VIN123456465",
             engineHoursMeter: "331.3",
-            insuranceNumber: "9521753456"
+            insuranceNumber: "9521753456",
+            tehchInspectionDate: "15/08/2021"
         },
         {
             id: "6",
@@ -72,7 +77,8 @@ export default function TrucksPage() {
             mileage: "45897",
             vinNumber: "VIN12345646511",
             engineHoursMeter: "405.3",
-            insuranceNumber: "8856413216"
+            insuranceNumber: "8856413216",
+            tehchInspectionDate: "19/02/2021"
         },
         {
             id: "7",
@@ -83,7 +89,8 @@ export default function TrucksPage() {
             mileage: "87598",
             vinNumber: "VIN12345646515",
             engineHoursMeter: "511.6",
-            insuranceNumber: "66555887746"
+            insuranceNumber: "66555887746",
+            tehchInspectionDate: "18/02/2021"
         },
         {
             id: "8",
@@ -94,7 +101,8 @@ export default function TrucksPage() {
             mileage: "79568",
             vinNumber: "VIN12345646758",
             engineHoursMeter: "0",
-            insuranceNumber: "66555887331"
+            insuranceNumber: "66555887331",
+            tehchInspectionDate: "17/02/2021"
         }
     ]);
 
@@ -445,18 +453,23 @@ export default function TrucksPage() {
     const [ query, setQuery ] = useState('');
     const [ criteria, setCriteria ] = useState('regNumber');
 
-    function deleteTruck(id) {
-        setCards(cards.filter((card) => card.id !== id));
+    function addTruck(truck){
+        console.log("Truck added" + truck.id)
+        setCards([...cards,truck])
     }
 
     function editTruck(truck) {
-        setCards(cards.map((card)=>{
-            if(card.id === truck.id){
-                card=truck;
+        setCards(cards.map((card) => {
+            if (card.id === truck.id) {
+                card = truck;
                 return card;
             }
             return card;
         }))
+    }
+
+    function deleteTruck(id) {
+        setCards(cards.filter((card) => card.id !== id));
     }
 
     function deleteService(id) {
@@ -472,17 +485,14 @@ export default function TrucksPage() {
         setFuelings(fuelings.filter((fueling) => fueling.id !== id));
     }
 
-
-
     return (
         <div className="content">
-
             <SearchBar search={setQuery} setSearchCriteria={setCriteria} />
-
             <Outlet context={{
                 cards: cards.filter((card) => card[ `${criteria}` ].toLowerCase().includes(query.toLowerCase())),
-                deleteTruck,
+                addTruck,
                 editTruck,
+                deleteTruck,
                 repairs: repairs.filter((repair) => repair[ `${criteria}` ].toLowerCase().includes(query.toLowerCase())),
                 deleteRepair,
                 fuelings: fuelings.filter((fueling) => fueling[ `${criteria}` ].toLowerCase().includes(query.toLocaleLowerCase())),

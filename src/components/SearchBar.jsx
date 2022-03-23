@@ -33,13 +33,13 @@ export default function SearchBar({ search, setSearchCriteria }) {
 
     return (
 
-        <Box sx={{ '& > :not(style)': { m: 1, width: '45ch', display: 'inline-flex' } }}>
+        <Box sx={{ '& > :not(style)': { m: 1, width: '35ch', display: 'inline-flex' } }}>
             <TextField
                 label={<SearchOutlinedIcon />}
                 variant="outlined"
                 onChange={e => (search(e.target.value))}
             />
-            <FormControl sx={{ m: 1, minWidth: 120 }}>
+            <FormControl sx={{ m: 1 }}>
                 <InputLabel> Опции: </InputLabel>
                 <Select
                     open={open}
@@ -64,7 +64,7 @@ export default function SearchBar({ search, setSearchCriteria }) {
                     renderInput={(startProps, endProps) => (
                         <React.Fragment>
                             <TextField {...startProps} />
-                            <Box sx={{ mx: 2 }}> до </Box>
+                            <Box sx={{ mx: 1 }}> до </Box>
                             <TextField {...endProps} />
                         </React.Fragment>
                     )}

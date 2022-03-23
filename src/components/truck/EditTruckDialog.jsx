@@ -11,7 +11,8 @@ import { useTheme } from '@mui/material/styles';
 
 
 
-export default function ResponsiveDialog({ card, editTruck }) {
+export default function EditTruckDialog({ card, editTruck }) {
+
     const id = card.id;
     const [ regNumber, setRegNum ] = useState(card.regNumber);
     const [ structure, setStructure ] = useState(card.structure);
@@ -21,12 +22,13 @@ export default function ResponsiveDialog({ card, editTruck }) {
     const [ model, setModel ] = useState(card.model);
     const [ mileage, setMileage ] = useState(card.mileage);
     const [ engineHoursMeter, setEngineHoursMeter ] = useState(card.engineHoursMeter);
+    const [ tehchInspectionDate, setTehchInspectionDate ] = useState(card.tehchInspectionDate);
     const [ open, setOpen ] = React.useState(false);
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
 
     function editVehicle() {
-        editTruck({id, regNumber, structure, vinNumber, insuranceNumber, brand, model, mileage, engineHoursMeter })
+        editTruck({ id, regNumber, structure, vinNumber, insuranceNumber, brand, model, mileage, engineHoursMeter, tehchInspectionDate})
         handleClose();
     }
 
@@ -56,40 +58,6 @@ export default function ResponsiveDialog({ card, editTruck }) {
                     <Form>
                         <Row className="mb-3">
                             <Form.Group as={Col}>
-                                <Form.Label>Рег. номер:</Form.Label>
-                                <Form.Control type="text"
-                                    defaultValue={regNumber}
-                                    onChange={(e) => setRegNum(e.target.value)}
-                                />
-                            </Form.Group>
-                            <Form.Group as={Col}>
-                                <Form.Label>Структура:</Form.Label>
-                                <Form.Control type="text"
-                                    defaultValue={structure}
-                                    onChange={(e) => setStructure(e.target.value)}
-                                />
-                            </Form.Group>
-                </Row>
-                <Row>
-                            <Form.Group as={Col}>
-                                <Form.Label>VIN номер:</Form.Label>
-                                <Form.Control type="text"
-                                    defaultValue={vinNumber}
-                                    onChange={e => setVinNum(e.target.value)}
-                                />
-                            </Form.Group>
-
-                            <Form.Group as={Col}>
-                                <Form.Label>Застраховка №:</Form.Label>
-                                <Form.Control type="text"
-                                    defaultValue={insuranceNumber}
-                                    onChange={(e) => (setInsuranceNum(e.target.value))}
-                                />
-                            </Form.Group>
-                        </Row>
-                        <br />
-                        <Row>
-                            <Form.Group as={Col}>
                                 <Form.Label>Марка:</Form.Label>
                                 <Form.Control type="text"
                                     defaultValue={brand}
@@ -104,7 +72,38 @@ export default function ResponsiveDialog({ card, editTruck }) {
                                 />
                             </Form.Group>
                         </Row>
-                        <br />
+                        <Row>
+                            <Form.Group as={Col}>
+                                <Form.Label>Рег. номер:</Form.Label>
+                                <Form.Control type="text"
+                                    defaultValue={regNumber}
+                                    onChange={(e) => setRegNum(e.target.value)}
+                                />
+                            </Form.Group>
+                            <Form.Group as={Col}>
+                                <Form.Label>Структура:</Form.Label>
+                                <Form.Control type="text"
+                                    defaultValue={structure}
+                                    onChange={(e) => setStructure(e.target.value)}
+                                />
+                            </Form.Group>
+                        </Row>
+                        <Row>
+                            <Form.Group as={Col}>
+                                <Form.Label>VIN номер:</Form.Label>
+                                <Form.Control type="text"
+                                    defaultValue={vinNumber}
+                                    onChange={e => setVinNum(e.target.value)}
+                                />
+                            </Form.Group>
+                            <Form.Group as={Col}>
+                                <Form.Label>Застраховка №:</Form.Label>
+                                <Form.Control type="text"
+                                    defaultValue={insuranceNumber}
+                                    onChange={(e) => (setInsuranceNum(e.target.value))}
+                                />
+                            </Form.Group>
+                        </Row>
                         <Row className="mb-3">
                             <Form.Group as={Col}>
                                 <Form.Label>
@@ -120,6 +119,13 @@ export default function ResponsiveDialog({ card, editTruck }) {
                                 <Form.Control type="text"
                                     defaultValue={engineHoursMeter}
                                     onChange={e => setEngineHoursMeter(e.target.value)}
+                                />
+                            </Form.Group>
+                            <Form.Group as={Col}>
+                                <Form.Label>Пеминал тех. прегед:</Form.Label>
+                                <Form.Control type="text"
+                                    defaultValue={tehchInspectionDate}
+                                    onChange={e=> setTehchInspectionDate(e.target.value)}
                                 />
                             </Form.Group>
                         </Row>
