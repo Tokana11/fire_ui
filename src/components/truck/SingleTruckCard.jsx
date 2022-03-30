@@ -65,7 +65,9 @@ function SingleTruckCard(props) {
                             <DeleteDialog id={id}
                                 type={'truck'}
                                 deleteTruck={deleteTruck}
-                                deleteMessage={`данните за пожарен автомобил с рег. № ${props.card.regNumber} `} />
+                                deleteMessage={`данните за пожарен автомобил с рег. № ${props.card.regNumber} `}
+                                buttonLabel = {'Изтрий'}
+                                 />
                         </Col>
                     </Row>
                 </Card.Body>

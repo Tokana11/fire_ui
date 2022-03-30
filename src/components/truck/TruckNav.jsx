@@ -17,15 +17,16 @@ function TruckNav() {
             <Nav.Link style={{ color: "gray" }} href="/trucks" active={pathname === '/trucks'}>
                 <LocalShippingOutlinedIcon /> Автомобили
             </Nav.Link>
+            <Nav.Link style={{ color: "gray" }} href="/trucks/fueling" active={pathname === '/trucks/fueling'}>
+                < LocalGasStationIcon /> Гориво
+            </Nav.Link>
             <Nav.Link style={{ color: "gray" }} href="/trucks/service" active={pathname === '/trucks/service'}>
                 <CarRepairOutlinedIcon /> Обслужвания
             </Nav.Link>
             <Nav.Link style={{ color: "gray" }} href="/trucks/repairs" active={pathname === '/trucks/repairs'}>
                 <BuildIcon /> Ремонти
             </Nav.Link >
-            <Nav.Link style={{ color: "gray" }} href="/trucks/fueling" active={pathname === '/trucks/fueling'}>
-                < LocalGasStationIcon /> Гориво
-            </Nav.Link>
+
         </Nav >
     )
 }

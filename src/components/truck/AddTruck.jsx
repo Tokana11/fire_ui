@@ -8,7 +8,6 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import TextField from '@mui/material/TextField';
 
-
 export default function AddTruck({ addTruck }) {
 
   const [ open, setOpen ] = React.useState(false);
@@ -42,7 +41,6 @@ export default function AddTruck({ addTruck }) {
     const mileage = data.mileage
     const engineHoursMeter = data.engineHoursMeter
     const tehchInspectionDate = data.tehchInspectionDate
-
     addTruck({
       id,
       brand,
@@ -59,6 +57,19 @@ export default function AddTruck({ addTruck }) {
     id++;
   }
 
+  const patternValidation = val => {
+    return /\s/g.test(val);
+  };
+
+  function fieldValidation(data) {
+    for (let i = 0; i < data.length; i++) {
+      if (patternValidation(data[ i ].value)) {
+        return true
+      } else
+        return false
+    }
+  }
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -67,13 +78,11 @@ export default function AddTruck({ addTruck }) {
     setOpen(false);
   };
 
-
   return (
     <div>
       <Button
-        color="success"
         size="small"
-        sx={{ position: 'fixed', bottom: 16, right: 16 }}
+        sx={{ position: 'fixed', bottom: 16, right: 16, backgroundColor: "#1a535c" }}
         variant="contained"
         onClick={handleClickOpen}>
         <AddCircleOutlineOutlinedIcon />
@@ -88,12 +97,7 @@ export default function AddTruck({ addTruck }) {
             }}
             autoComplete="off"
             onSubmit={handleSubmit((data) => {
-              if (data.brand.trim() !== '' && data.model.trim() !== ''
-                && data.regNumber.trim() !== '' && data.structure.trim() !== ''
-                && data.vinNumber.trim() !== '' && data.insuranceNumber.trim() !== ''
-                && data.mileage.trim() !== '' && data.engineHoursMeter.trim() !== ''
-                && data.tehchInspectionDate.trim() !== ''
-              ) {
+              if (fieldValidation(data)) {
                 addVehicle(data);
                 reset()
               }
@@ -171,14 +175,13 @@ export default function AddTruck({ addTruck }) {
               helperText={errors.mileage?.message}
             />
 
-
             <div style={{ position: 'absolute', bottom: 16, right: 16 }}>
               <Button
                 variant='contained'
                 color='error'
                 onClick={handleClose}
               >
-                Cancel
+                Отказ
               </Button>
               {' '}
               <Button
@@ -186,7 +189,7 @@ export default function AddTruck({ addTruck }) {
                 color='success'
                 type='submit'
               >
-                Submit
+                Запиши
               </Button>
             </div>
 
@@ -196,3 +199,4 @@ export default function AddTruck({ addTruck }) {
     </div>
   );
 }
+

@@ -17,8 +17,6 @@ import Paper from '@mui/material/Paper';
 import { Button, ButtonGroup } from "react-bootstrap";
 import { useOutletContext } from 'react-router-dom';
 
-
-
 function Row({ service, deleteService }) {
 
     const [ open, setOpen ] = React.useState(false);

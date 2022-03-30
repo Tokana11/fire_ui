@@ -10,14 +10,11 @@ export default function TruckCardsDeck() {
     const { cards } = useOutletContext();
     const { addTruck } = useOutletContext();
 
-
     return (
-
         <div>
             <Row >
                 {cards.map((card) => <SingleTruckCard key={card.id} card={card} />)}
             </Row>
-
             <AddTruck addTruck={addTruck} />
         </div>
 

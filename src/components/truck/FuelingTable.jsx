@@ -6,11 +6,15 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { Button, ButtonGroup } from "react-bootstrap";
+// import { Button, ButtonGroup } from "react-bootstrap";
 import CreateOutlinedIcon from '@mui/icons-material/CreateOutlined';
 import { useOutletContext } from 'react-router-dom';
 
 import DeleteDialog from '../truck/DeleteDialog';
+
+import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
+import Box from '@mui/material/Box';
 
 export default function RepairTable() {
 
@@ -53,7 +57,7 @@ export default function RepairTable() {
                             <TableCell align="center">{fueling.quantity}</TableCell>
                             <TableCell >{fueling.price}</TableCell>
                             <TableCell align="center">
-                                <ButtonGroup size={"sm"}>
+                                {/* <ButtonGroup size={"sm"}>
                                     <Button variant="outline-primary">
                                         <CreateOutlinedIcon />
                                     </Button>{' '}
@@ -61,7 +65,34 @@ export default function RepairTable() {
                                         type={'fueling'}
                                         deleteFueling={deleteFueling}
                                         deleteMessage={`запис за зарядка с №: ${fueling.id} от ${fueling.date} за пожарен автомобил с рег. № ${fueling.regNumber} `} />
-                                </ButtonGroup>
+                                </ButtonGroup> */}
+                                <Box
+                                    sx={{
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        alignItems: 'center',
+                                        '& > *': {
+                                            m: 1,
+                                        },
+                                    }}
+                                >
+                                    <ButtonGroup variant="outlined" aria-label="outlined button group">
+                                        <Button
+                                            style={{
+                                                backgroundColor: "#1a535c",
+                                            }}
+                                            size="small"
+                                            variant="contained"
+                                        >
+                                            <CreateOutlinedIcon />
+                                        </Button>
+                                        <DeleteDialog id={fueling.id}
+                                            type={'fueling'}
+                                            deleteFueling={deleteFueling}
+                                            deleteMessage={`запис за зарядка с №: ${fueling.id} от ${fueling.date} за пожарен автомобил с рег. № ${fueling.regNumber} `} />
+                                    </ButtonGroup>
+
+                                </Box>
                             </TableCell>
                         </TableRow>
                     ))}

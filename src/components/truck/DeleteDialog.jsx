@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useState } from 'react';
 
-import { Button } from "react-bootstrap";
+import Button from '@mui/material/Button';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 
 import Dialog from '@mui/material/Dialog';
@@ -12,7 +12,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
-export default function DeleteDialog({ id, type, deleteTruck, deleteRepair, deleteFueling, deleteService, deleteMessage }) {
+export default function DeleteDialog({ id, type, deleteTruck, deleteRepair, deleteFueling, deleteService, deleteMessage,buttonLabel }) {
 
     const [ open, setOpen ] = useState(false);
     const theme = useTheme();
@@ -41,8 +41,14 @@ export default function DeleteDialog({ id, type, deleteTruck, deleteRepair, dele
 
     return (
         <div>
-            <Button variant="danger" size='sm' onClick={handleClickOpen}>
-                Изтрий <DeleteOutlinedIcon />
+            <Button
+                style={{
+                    backgroundColor: "#d62828",
+                }}
+                size="small"
+                variant="contained"
+                onClick={handleClickOpen}>
+                {buttonLabel} <DeleteOutlinedIcon />
             </Button>
             <Dialog
                 fullScreen={fullScreen}
@@ -59,10 +65,20 @@ export default function DeleteDialog({ id, type, deleteTruck, deleteRepair, dele
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button variant="danger" onClick={handleClose}>
+                    <Button
+                        style={{
+                            color: "white",
+                            backgroundColor: "#d62828",
+                        }}
+                        onClick={handleClose}>
                         Отказ
                     </Button>
-                    <Button variant="success" onClick={handleConfirm}>
+                    <Button
+                        style={{
+                            color: "white",
+                            backgroundColor: "#198754",
+                        }}
+                        onClick={handleConfirm}>
                         Потвърди
                     </Button>
                 </DialogActions>
