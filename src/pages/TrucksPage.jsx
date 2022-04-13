@@ -106,6 +106,73 @@ export default function TrucksPage() {
         }
     ]);
 
+    const [ fuelings, setFuelings ] = useState([
+        {
+            id: '1',
+            regNumber: 'РВ6923РМ',
+            structure: "01РСПБЗН",
+            date: '01.12.2021',
+            quantity: 50,
+            price: 23.00
+        },
+        {
+            id: '2',
+            regNumber: 'РВ1837РР',
+            structure: "01РСПБЗН",
+            date: '15.12.2021',
+            quantity: 30,
+            price: 13.99
+        },
+        {
+            id: '3',
+            regNumber: 'РВ1836РР',
+            structure: "01РСПБЗН",
+            date: '02.12.2021',
+            quantity: 20,
+            price: 157.33
+        },
+        {
+            id: '4',
+            regNumber: 'РВ5741ТР',
+            structure: "УПБЗН-СЪЕДИНЕНИЕ",
+            date: '01.11.2021',
+            quantity: 100,
+            price: 45.00
+        },
+        {
+            id: '5',
+            regNumber: 'РВ0007ТР',
+            structure: "УПБЗН-СЪЕДИНЕНИЕ",
+            date: '18.12.2021',
+            quantity: 48,
+            price: 58.78
+        },
+        {
+            id: '6',
+            regNumber: 'РВ0007ТР',
+            structure: "УПБЗН-СЪЕДИНЕНИЕ",
+            date: '20.04.2021',
+            quantity: 39,
+            price: 215.45
+        },
+        {
+            id: '7',
+            regNumber: 'РВ6923РМ',
+            structure: "01 РСПБЗН",
+            date: '13.03.2021',
+            quantity: 40,
+            price: 147.78
+        },
+        {
+            id: '8',
+            regNumber: 'РВ3628АВ',
+            structure: "01 РСПБЗН",
+            date: '11.03.2020',
+            quantity: 80,
+            price: 159.77
+        },
+    ])
+
     const [ services, setServices ] = useState([
         {
             id: '1',
@@ -383,79 +450,14 @@ export default function TrucksPage() {
         },
     ])
 
-    const [ fuelings, setFuelings ] = useState([
-        {
-            id: '1',
-            regNumber: 'РВ6923РМ',
-            structure: "01РСПБЗН",
-            date: '01.12.2021',
-            quantity: 50,
-            price: 23.00
-        },
-        {
-            id: '2',
-            regNumber: 'РВ1837РР',
-            structure: "01РСПБЗН",
-            date: '15.12.2021',
-            quantity: 30,
-            price: 13.99
-        },
-        {
-            id: '3',
-            regNumber: 'РВ1836РР',
-            structure: "01РСПБЗН",
-            date: '02.12.2021',
-            quantity: 20,
-            price: 157.33
-        },
-        {
-            id: '4',
-            regNumber: 'РВ5741ТР',
-            structure: "УПБЗН-СЪЕДИНЕНИЕ",
-            date: '01.11.2021',
-            quantity: 100,
-            price: 45.00
-        },
-        {
-            id: '5',
-            regNumber: 'РВ0007ТР',
-            structure: "УПБЗН-СЪЕДИНЕНИЕ",
-            date: '18.12.2021',
-            quantity: 48,
-            price: 58.78
-        },
-        {
-            id: '6',
-            regNumber: 'РВ0007ТР',
-            structure: "УПБЗН-СЪЕДИНЕНИЕ",
-            date: '20.04.2021',
-            quantity: 39,
-            price: 215.45
-        },
-        {
-            id: '7',
-            regNumber: 'РВ6923РМ',
-            structure: "01 РСПБЗН",
-            date: '13.03.2021',
-            quantity: 40,
-            price: 147.78
-        },
-        {
-            id: '8',
-            regNumber: 'РВ3628АВ',
-            structure: "01 РСПБЗН",
-            date: '11.03.2020',
-            quantity: 80,
-            price: 159.77
-        },
-    ])
+
 
     const [ query, setQuery ] = useState('');
     const [ criteria, setCriteria ] = useState('regNumber');
 
-    function addTruck(truck){
-        console.log("Truck added" + truck.id)
-        setCards([...cards,truck])
+    function addTruck(truck) {
+        console.log("Truck added!")
+        setCards([ ...cards, truck ])
     }
 
     function editTruck(truck) {

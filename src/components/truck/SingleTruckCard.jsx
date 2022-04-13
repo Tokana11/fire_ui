@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, ListGroup, Col, Row, Button } from "react-bootstrap";
-import EditTruckDialog from '../truck/EditTruckDialog';
+import EditTruck from '../truck/EditTruck';
 import Image from "../../assets/images/fireTruck.png";
 import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
 
@@ -55,7 +55,7 @@ function SingleTruckCard(props) {
                 <Card.Body>
                     <Row>
                         <Col>
-                           <EditTruckDialog 
+                           <EditTruck
                             card={props.card}
                             editTruck={editTruck}
                             id={props.id}
