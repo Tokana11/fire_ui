@@ -36,7 +36,7 @@ export default function AddTruck({ addTruck }) {
       insuranceNumber: '',
       mileage: '',
       engineHoursMeter: '',
-      tehchInspectionDate: new Date().toDateString()
+      tehchInspectionDate: new Date()
     }
   });
 
@@ -76,6 +76,8 @@ export default function AddTruck({ addTruck }) {
             }}
             autoComplete="off"
             onSubmit={handleSubmit((data) => {
+              let formatedDate = new Date(data.tehchInspectionDate).toLocaleDateString(locale)
+              data.tehchInspectionDate = formatedDate;
               addVehicle(data);
               reset();
             })}
@@ -201,11 +203,12 @@ export default function AddTruck({ addTruck }) {
               />
             </Stack>
             <Stack direction={'row'}>
-              <LocalizationProvider dateAdapter={AdapterDateFns} locale={localeMap[ locale ]}>
-                <Controller
-                  control={control}
-                  name={'tehchInspectionDate'}
-                  render={({ field }) => (
+
+              <Controller
+                control={control}
+                name={'tehchInspectionDate'}
+                render={({ field }) => (
+                  <LocalizationProvider dateAdapter={AdapterDateFns} locale={localeMap[ locale ]}>
                     <DatePicker
                       label={'Дата тех. преглед'}
                       value={field.value}
@@ -214,9 +217,9 @@ export default function AddTruck({ addTruck }) {
                         <TextField  {...params} />
                       )}
                     />
-                  )}
-                />
-              </LocalizationProvider>
+                  </LocalizationProvider>
+                )}
+              />
             </Stack>
             <div style={{ float: 'right' }}>
               <Button

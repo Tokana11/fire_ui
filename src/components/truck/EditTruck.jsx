@@ -102,6 +102,8 @@ export default function EditTruck({ card, editTruck }) {
                         }}
                         autoComplete="off"
                         onSubmit={handleSubmit((data) => {
+                            let formatedDate = new Date(data.tehchInspectionDate).toLocaleDateString(locale)
+                            data.tehchInspectionDate = formatedDate;
                             editVehicle(data);
                             reset();
                         })}
@@ -227,22 +229,22 @@ export default function EditTruck({ card, editTruck }) {
                             />
                         </Stack>
                         <Stack direction={'row'}>
-                            <LocalizationProvider dateAdapter={AdapterDateFns} locale={localeMap[ locale ]}>
-                                <Controller
-                                    control={control}
-                                    name={'tehchInspectionDate'}
-                                    render={({ field }) => (
+                            <Controller
+                                control={control}
+                                name={'tehchInspectionDate'}
+                                render={({ field }) => (
+                                    <LocalizationProvider dateAdapter={AdapterDateFns} locale={localeMap[ locale ]}>
                                         <DatePicker
                                             label={'Дата тех. преглед'}
                                             value={field.value}
-                                            onChange={(date) => handleChange(date.toDateString(), field)}
+                                            onChange={(date) => handleChange(date, field)}
                                             renderInput={(params) => (
                                                 <TextField  {...params} />
                                             )}
                                         />
-                                    )}
-                                />
-                            </LocalizationProvider>
+                                    </LocalizationProvider>
+                                )}
+                            />
                         </Stack>
                         <div style={{ float: 'right' }}>
                             <Button

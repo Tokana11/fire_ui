@@ -38,7 +38,7 @@ export default function AddFielingRecord() {
     } = useForm({
         defaultValues: {
             regNumber: '',
-            date: new Date().toDateString(),
+            date: new Date(),
             quantity: '',
             price: '',
         }
@@ -80,6 +80,8 @@ export default function AddFielingRecord() {
                             '& .MuiTextField-root': { m: 1, width: '25ch' },
                         }}
                         onSubmit={handleSubmit((data) => {
+                            let formatedDate = new Date(data.date).toLocaleDateString(locale)
+                            data.date = formatedDate;
                             addFuelinRecord(data);
                             reset();
                         })}
@@ -100,22 +102,25 @@ export default function AddFielingRecord() {
                             />
                         </Stack>
                         <Stack direction={'row'}>
-                            <LocalizationProvider dateAdapter={AdapterDateFns} locale={localeMap[ locale ]}>
-                                <Controller
-                                    control={control}
-                                    name={'date'}
-                                    render={({ field }) => (
+
+                            <Controller
+                                control={control}
+                                name={'date'}
+                                render={({ field }) => (
+                                    <LocalizationProvider dateAdapter={AdapterDateFns} locale={localeMap[ locale ]}>
                                         <DatePicker
                                             label={'Дата'}
                                             value={field.value}
-                                            onChange={(date) => handleChange(date.toDateString(), field)}
+                                            onChange={(date) => handleChange(date, field)}
                                             renderInput={(params) => (
                                                 <TextField  {...params} />
                                             )}
                                         />
-                                    )}
-                                />
-                            </LocalizationProvider>
+                                    </LocalizationProvider>
+                                )}
+
+                            />
+
                         </Stack>
                         <Stack direction={'row'}>
                             <TextField
