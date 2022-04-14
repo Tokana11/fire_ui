@@ -18,6 +18,7 @@ import AddFielingRecord from './AddFielingRecord'
 export default function RepairTable() {
 
     const { fuelings } = useOutletContext();
+    const { addFuelingRecord } = useOutletContext();
     const { deleteFueling } = useOutletContext();
 
     function sumQuantity() {
@@ -101,7 +102,7 @@ export default function RepairTable() {
                     </TableBody>
                 </Table>
             </TableContainer>
-            <AddFielingRecord/>
+            <AddFielingRecord addFuelingRecord={addFuelingRecord} />
         </>
 
 

@@ -34,37 +34,16 @@ export default function EditTruck({ card, editTruck }) {
             model: card.model,
             regNumber: card.regNumber,
             structure: card.structure,
-            vinNumber: card.regNumber,
+            vinNumber: card.vinNumber,
             insuranceNumber: card.insuranceNumber,
             mileage: card.mileage,
             engineHoursMeter: card.engineHoursMeter,
-            tehchInspectionDate: card.tehchInspectionDate
+            tehchInspectionDate: new Date(card.tehchInspectionDate)
         }
     });
 
     function editVehicle(data) {
-        const id = data.id;
-        const regNumber = data.regNumber;
-        const structure = data.structure
-        const vinNumber = data.vinNumber
-        const insuranceNumber = data.insuranceNumber
-        const brand = data.brand
-        const model = data.model
-        const mileage = data.mileage
-        const engineHoursMeter = data.engineHoursMeter
-        const tehchInspectionDate = data.tehchInspectionDate
-        editTruck({
-            id,
-            brand,
-            model,
-            regNumber,
-            structure,
-            vinNumber,
-            insuranceNumber,
-            mileage,
-            engineHoursMeter,
-            tehchInspectionDate
-        })
+        editTruck(data)
         handleClose();
     }
 

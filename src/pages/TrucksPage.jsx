@@ -18,7 +18,7 @@ export default function TrucksPage() {
             vinNumber: "VIN123456",
             engineHoursMeter: "332.6",
             insuranceNumber: "789456123",
-            tehchInspectionDate: "19/02/2021"
+            tehchInspectionDate: new Date("2021-09-01").toLocaleDateString('bg')
         },
         {
             id: "2",
@@ -30,7 +30,7 @@ export default function TrucksPage() {
             vinNumber: "VIN1234567",
             engineHoursMeter: "206.3",
             insuranceNumber: "98745612",
-            tehchInspectionDate: "22/03/2021"
+            tehchInspectionDate: new Date("2021-03-22").toLocaleDateString('bg')
         },
         {
             id: "3",
@@ -42,7 +42,7 @@ export default function TrucksPage() {
             vinNumber: "VIN123456879",
             engineHoursMeter: "258.3",
             insuranceNumber: "324567798",
-            tehchInspectionDate: "30/07/2021"
+            tehchInspectionDate: new Date("2021-07-30").toLocaleDateString('bg')
         },
         {
             id: "4",
@@ -54,7 +54,7 @@ export default function TrucksPage() {
             vinNumber: "VIN12345699",
             engineHoursMeter: "381.3",
             insuranceNumber: "789654123",
-            tehchInspectionDate: "01/01/2022"
+            tehchInspectionDate: new Date("2022-01-01").toLocaleDateString('bg')
         },
         {
             id: "5",
@@ -66,7 +66,7 @@ export default function TrucksPage() {
             vinNumber: "VIN123456465",
             engineHoursMeter: "331.3",
             insuranceNumber: "9521753456",
-            tehchInspectionDate: "15/08/2021"
+            tehchInspectionDate: new Date("2021-08-15").toLocaleDateString('bg')
         },
         {
             id: "6",
@@ -78,7 +78,7 @@ export default function TrucksPage() {
             vinNumber: "VIN12345646511",
             engineHoursMeter: "405.3",
             insuranceNumber: "8856413216",
-            tehchInspectionDate: "19/02/2021"
+            tehchInspectionDate: new Date("2021-02-19").toLocaleDateString('bg')
         },
         {
             id: "7",
@@ -90,7 +90,7 @@ export default function TrucksPage() {
             vinNumber: "VIN12345646515",
             engineHoursMeter: "511.6",
             insuranceNumber: "66555887746",
-            tehchInspectionDate: "18/02/2021"
+            tehchInspectionDate: new Date("2021-02-18").toLocaleDateString('bg')
         },
         {
             id: "8",
@@ -102,7 +102,7 @@ export default function TrucksPage() {
             vinNumber: "VIN12345646758",
             engineHoursMeter: "0",
             insuranceNumber: "66555887331",
-            tehchInspectionDate: "17/02/2021"
+            tehchInspectionDate: new Date("2021-02-17").toLocaleDateString('bg')
         }
     ]);
 
@@ -474,6 +474,11 @@ export default function TrucksPage() {
         setCards(cards.filter((card) => card.id !== id));
     }
 
+    function addFuelingRecord(fuelingRecord) {
+        console.log("Fueling record added!")
+        setFuelings([ ...fuelings, fuelingRecord ])
+    }
+
     function deleteService(id) {
         setServices(services.filter((service) => service.id !== id));
     }
@@ -497,6 +502,7 @@ export default function TrucksPage() {
                 deleteTruck,
                 repairs: repairs.filter((repair) => repair[ `${criteria}` ].toLowerCase().includes(query.toLowerCase())),
                 deleteRepair,
+                addFuelingRecord,
                 fuelings: fuelings.filter((fueling) => fueling[ `${criteria}` ].toLowerCase().includes(query.toLocaleLowerCase())),
                 deleteFueling,
                 services: services.filter((service) => service[ `${criteria}` ].toLowerCase().includes(query.toLocaleLowerCase())),

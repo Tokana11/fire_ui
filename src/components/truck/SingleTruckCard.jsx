@@ -13,9 +13,9 @@ function SingleTruckCard(props) {
         id, structure, regNumber, brand, model, mileage, vinNumber, engineHoursMeter, insuranceNumber, tehchInspectionDate
     } = props.card;
 
-    const {editTruck} = useOutletContext();
+    const { editTruck } = useOutletContext();
     const { deleteTruck } = useOutletContext();
-    
+
 
     return (
         <>
@@ -43,7 +43,7 @@ function SingleTruckCard(props) {
                         <br />
                         <b>Застраховка:</b> {insuranceNumber}
                         <br />
-                        <b>Тех. преглед:</b> {tehchInspectionDate}
+                        <b>Тех. преглед:</b> {tehchInspectionDate.toString()}
                     </Card.Text>
                 </Card.Body>
                 <ListGroup className="list-group-flush">
@@ -55,19 +55,19 @@ function SingleTruckCard(props) {
                 <Card.Body>
                     <Row>
                         <Col>
-                           <EditTruck
-                            card={props.card}
-                            editTruck={editTruck}
-                            id={props.id}
-                           />
+                            <EditTruck
+                                card={props.card}
+                                editTruck={editTruck}
+                                id={props.id}
+                            />
                         </Col>
                         <Col>
                             <DeleteDialog id={id}
                                 type={'truck'}
                                 deleteTruck={deleteTruck}
                                 deleteMessage={`данните за пожарен автомобил с рег. № ${props.card.regNumber} `}
-                                buttonLabel = {'Изтрий'}
-                                 />
+                                buttonLabel={'Изтрий'}
+                            />
                         </Col>
                     </Row>
                 </Card.Body>

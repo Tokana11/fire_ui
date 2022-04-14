@@ -19,7 +19,7 @@ const localeMap = {
     bg: bgLocale
 }
 
-export default function AddFielingRecord() {
+export default function AddFielingRecord({ addFuelingRecord }) {
 
     const { cards } = useOutletContext();
 
@@ -27,7 +27,9 @@ export default function AddFielingRecord() {
 
     const [ open, setOpen ] = React.useState(false);
 
-    const options = cards.map(item => item.regNumber);
+    const regNumOptions = cards.map(item => item.regNumber);
+
+    const [ structure, setStructure ] = React.useState('');
 
     const {
         register,
@@ -38,6 +40,7 @@ export default function AddFielingRecord() {
     } = useForm({
         defaultValues: {
             regNumber: '',
+            structure: '',
             date: new Date(),
             quantity: '',
             price: '',
@@ -57,10 +60,23 @@ export default function AddFielingRecord() {
         field.onChange(date);
     };
 
-    const addFuelinRecord = (data) => {
-        console.log(data);
+    const addRecord = (data) => {
+        data.structure = structure;
+        addFuelingRecord(data)
         handleClose();
     }
+
+    function getStructuteByTruckRegNum(regNumber) {
+        cards.forEach(element => {
+            if (element.regNumber === regNumber) {
+                console.log(element.structure)
+                setStructure(element.structure);
+            }
+        });
+    }
+
+
+
     return (
         <div>
             <Button
@@ -82,7 +98,7 @@ export default function AddFielingRecord() {
                         onSubmit={handleSubmit((data) => {
                             let formatedDate = new Date(data.date).toLocaleDateString(locale)
                             data.date = formatedDate;
-                            addFuelinRecord(data);
+                            addRecord(data);
                             reset();
                         })}
                     >
@@ -90,7 +106,10 @@ export default function AddFielingRecord() {
                             <Autocomplete
                                 id="outlined-basic"
                                 disablePortal
-                                options={options}
+                                options={regNumOptions}
+                                onChange={(_event, regNumber) => {
+                                    getStructuteByTruckRegNum(regNumber)
+                                }}
                                 renderInput={(params) => <TextField
                                     {...params}
                                     {...register("regNumber", {
@@ -102,7 +121,6 @@ export default function AddFielingRecord() {
                             />
                         </Stack>
                         <Stack direction={'row'}>
-
                             <Controller
                                 control={control}
                                 name={'date'}
@@ -118,9 +136,7 @@ export default function AddFielingRecord() {
                                         />
                                     </LocalizationProvider>
                                 )}
-
                             />
-
                         </Stack>
                         <Stack direction={'row'}>
                             <TextField
