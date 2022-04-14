@@ -60,12 +60,6 @@ export default function AddFielingRecord({ addFuelingRecord }) {
         field.onChange(date);
     };
 
-    const addRecord = (data) => {
-        data.structure = structure;
-        addFuelingRecord(data)
-        handleClose();
-    }
-
     function getStructuteByTruckRegNum(regNumber) {
         cards.forEach(element => {
             if (element.regNumber === regNumber) {
@@ -75,7 +69,13 @@ export default function AddFielingRecord({ addFuelingRecord }) {
         });
     }
 
-
+    const addRecord = (data) => {
+        data.structure = structure;
+        data.quantity = Number.parseFloat(data.quantity)
+        data.price = Number.parseFloat(data.price)
+        addFuelingRecord(data)
+        handleClose();
+    }
 
     return (
         <div>

@@ -14,15 +14,14 @@ import ButtonGroup from '@mui/material/ButtonGroup';
 import Box from '@mui/material/Box';
 import AddFielingRecord from './AddFielingRecord'
 
-
-export default function RepairTable() {
+export default function FuelingTable() {
 
     const { fuelings } = useOutletContext();
     const { addFuelingRecord } = useOutletContext();
     const { deleteFueling } = useOutletContext();
 
     function sumQuantity() {
-        return Number.parseFloat(fuelings.reduce((price, fueling) => price = price + fueling.quantity, 0)).toFixed(2)
+        return Number.parseFloat(fuelings.reduce((quantity, fueling) => quantity = quantity + fueling.quantity, 0)).toFixed(2)
     }
 
     function sumPrice() {
@@ -104,7 +103,5 @@ export default function RepairTable() {
             </TableContainer>
             <AddFielingRecord addFuelingRecord={addFuelingRecord} />
         </>
-
-
     )
 }
