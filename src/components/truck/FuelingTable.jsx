@@ -1,23 +1,23 @@
-import React from 'react'
+import React from 'react';
+import { useOutletContext } from 'react-router-dom';
+import AddFielingRecord from './AddFielingRecord';
+import Box from '@mui/material/Box';
+import ButtonGroup from '@mui/material/ButtonGroup';
+import EditFuelingRecord from './EditFuelingRecord';
+import DeleteDialog from '../truck/DeleteDialog';
+import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import CreateOutlinedIcon from '@mui/icons-material/CreateOutlined';
-import { useOutletContext } from 'react-router-dom';
-import DeleteDialog from '../truck/DeleteDialog';
-import Button from '@mui/material/Button';
-import ButtonGroup from '@mui/material/ButtonGroup';
-import Box from '@mui/material/Box';
-import AddFielingRecord from './AddFielingRecord'
 
 export default function FuelingTable() {
 
     const { fuelings } = useOutletContext();
     const { addFuelingRecord } = useOutletContext();
+    const { editFuelingRecord } = useOutletContext();
     const { deleteFueling } = useOutletContext();
 
     function sumQuantity() {
@@ -53,7 +53,7 @@ export default function FuelingTable() {
                                 <TableCell >{fueling.id}</TableCell>
                                 <TableCell >{fueling.structure}</TableCell>
                                 <TableCell >{fueling.regNumber}</TableCell>
-                                <TableCell align="center">{fueling.date}</TableCell>
+                                <TableCell align="center">{fueling.date.toString()}</TableCell>
                                 <TableCell align="center">{fueling.quantity}</TableCell>
                                 <TableCell align="center">{fueling.price}</TableCell>
                                 <TableCell align="center">
@@ -68,16 +68,13 @@ export default function FuelingTable() {
                                         }}
                                     >
                                         <ButtonGroup variant="outlined" aria-label="outlined button group">
-                                            <Button
-                                                style={{
-                                                    backgroundColor: "#1a535c",
-                                                }}
-                                                size="small"
-                                                variant="contained"
-                                            >
-                                                <CreateOutlinedIcon />
-                                            </Button>
-                                            <DeleteDialog id={fueling.id}
+                                            <EditFuelingRecord
+                                                id={fueling.id}
+                                                fueling={fueling}
+                                                editFuelingRecord={editFuelingRecord}
+                                            />
+                                            <DeleteDialog
+                                                id={fueling.id}
                                                 type={'fueling'}
                                                 deleteFueling={deleteFueling}
                                                 deleteMessage={`запис за зарядка с №: ${fueling.id} от ${fueling.date} за пожарен автомобил с рег. № ${fueling.regNumber} `} />

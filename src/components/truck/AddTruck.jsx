@@ -125,6 +125,10 @@ export default function AddTruck({ addTruck }) {
                 variant="outlined"
                 {...register("regNumber", {
                   required: 'Въвдете Рег. №!',
+                  minLength: {
+                    value: 8,
+                    message: 'Въвдете минимум осем символа!'
+                  },
                   pattern: {
                     value: /^[^-\s][a-zA-Z_.а-яА-Я0-9_\s-]+$/,
                     message: 'Въведените данни не могат нито да започват, нито да съдържат само интервал!'
@@ -138,6 +142,10 @@ export default function AddTruck({ addTruck }) {
                 variant="outlined"
                 {...register("structure", {
                   required: 'Въвдете структура!',
+                  minLength: {
+                    value: 2,
+                    message: 'Въвдете минимум два символа!'
+                  },
                   pattern: {
                     value: /^[^-\s][a-zA-Z_.а-яА-Я0-9_\s-]+$/,
                     message: 'Въведените данни не могат нито да започват, нито да съдържат само интервал!'
@@ -153,6 +161,10 @@ export default function AddTruck({ addTruck }) {
                 variant="outlined"
                 {...register("vinNumber", {
                   required: 'Въвдете VIN №!',
+                  minLength: {
+                    value: 2,
+                    message: 'Въвдете минимум два символа!'
+                  },
                   pattern: {
                     value: /^[^-\s][a-zA-Z_.а-яА-Я0-9_\s-]+$/,
                     message: 'Въведените данни не могат нито да започват, нито да съдържат само интервал!'
@@ -166,6 +178,10 @@ export default function AddTruck({ addTruck }) {
                 variant="outlined"
                 {...register("insuranceNumber", {
                   required: 'Въвдете № на застаховка!',
+                  minLength: {
+                    value: 2,
+                    message: 'Въвдете минимум два символа!'
+                  },
                   pattern: {
                     value: /^[^-\s][a-zA-Z_.а-яА-Я0-9_\s-]+$/,
                     message: 'Въведените данни не могат нито да започват, нито да съдържат само интервал!'

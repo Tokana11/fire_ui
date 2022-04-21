@@ -56,9 +56,9 @@ function SingleTruckCard(props) {
                     <Row>
                         <Col>
                             <EditTruck
+                                id={props.id}
                                 card={props.card}
                                 editTruck={editTruck}
-                                id={props.id}
                             />
                         </Col>
                         <Col>

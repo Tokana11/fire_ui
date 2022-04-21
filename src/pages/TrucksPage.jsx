@@ -111,7 +111,7 @@ export default function TrucksPage() {
             id: '1',
             regNumber: 'РВ6923РМ',
             structure: "01РСПБЗН",
-            date: '01.12.2021',
+            date: new Date("2021-09-01").toLocaleDateString('bg'),
             quantity: 50,
             price: 23.00
         },
@@ -119,7 +119,7 @@ export default function TrucksPage() {
             id: '2',
             regNumber: 'РВ1837РР',
             structure: "01РСПБЗН",
-            date: '15.12.2021',
+            date: new Date('2021-12-15').toLocaleDateString('bg'),
             quantity: 30,
             price: 13.99
         },
@@ -127,7 +127,7 @@ export default function TrucksPage() {
             id: '3',
             regNumber: 'РВ1836РР',
             structure: "01РСПБЗН",
-            date: '02.12.2021',
+            date: new Date('2021-12-02').toLocaleDateString('bg'),
             quantity: 20,
             price: 157.33
         },
@@ -135,7 +135,7 @@ export default function TrucksPage() {
             id: '4',
             regNumber: 'РВ5741ТР',
             structure: "УПБЗН-СЪЕДИНЕНИЕ",
-            date: '01.11.2021',
+            date: new Date('2021-11-01').toLocaleDateString('bg'),
             quantity: 100,
             price: 45.00
         },
@@ -143,7 +143,7 @@ export default function TrucksPage() {
             id: '5',
             regNumber: 'РВ0007ТР',
             structure: "УПБЗН-СЪЕДИНЕНИЕ",
-            date: '18.12.2021',
+            date: new Date('2021-12-18').toLocaleDateString('bg'),
             quantity: 48,
             price: 58.78
         },
@@ -151,7 +151,7 @@ export default function TrucksPage() {
             id: '6',
             regNumber: 'РВ0007ТР',
             structure: "УПБЗН-СЪЕДИНЕНИЕ",
-            date: '20.04.2021',
+            date: new Date('2021-04-20').toLocaleDateString('bg'),
             quantity: 39,
             price: 215.45
         },
@@ -159,7 +159,7 @@ export default function TrucksPage() {
             id: '7',
             regNumber: 'РВ6923РМ',
             structure: "01 РСПБЗН",
-            date: '13.03.2021',
+            date: new Date('2021-03-13').toLocaleDateString('bg'),
             quantity: 40,
             price: 147.78
         },
@@ -167,7 +167,7 @@ export default function TrucksPage() {
             id: '8',
             regNumber: 'РВ3628АВ',
             structure: "01 РСПБЗН",
-            date: '11.03.2020',
+            date: new Date('2020-03-11').toLocaleDateString('bg'),
             quantity: 80,
             price: 159.77
         },
@@ -388,7 +388,7 @@ export default function TrucksPage() {
             id: '1',
             regNumber: 'РВ6923РМ',
             structure: "01РСПБЗН",
-            date: '01.12.2021',
+            date: new Date('2022-12-01').toLocaleDateString('bg'),
             description: 'some repair',
             price: 23.00
         },
@@ -396,7 +396,7 @@ export default function TrucksPage() {
             id: '2',
             regNumber: 'РВ1837РР',
             structure: "01РСПБЗН",
-            date: '15.12.2021',
+            date: new Date('2022-12-15').toLocaleDateString('bg'),
             description: 'some repair',
             price: 13.99
         },
@@ -404,7 +404,7 @@ export default function TrucksPage() {
             id: '3',
             regNumber: 'РВ1836РР',
             structure: "01РСПБЗН",
-            date: '02.12.2021',
+            date: new Date('2022-11-13').toLocaleDateString('bg'),
             description: 'some repair',
             price: 157.33
         },
@@ -412,7 +412,7 @@ export default function TrucksPage() {
             id: '4',
             regNumber: 'РВ5741ТР',
             structure: "УПБЗН-СЪЕДИНЕНИЕ",
-            date: '01.11.2021',
+            date: new Date('2022-08-05').toLocaleDateString('bg'),
             description: 'some repair',
             price: 45.00
         },
@@ -420,7 +420,7 @@ export default function TrucksPage() {
             id: '5',
             regNumber: 'РВ0007ТР',
             structure: "УПБЗН-СЪЕДИНЕНИЕ",
-            date: '18.12.2021',
+            date: new Date('2022-05-18').toLocaleDateString('bg'),
             description: 'some repair',
             price: 58.78
         },
@@ -428,7 +428,7 @@ export default function TrucksPage() {
             id: '6',
             regNumber: 'РВ0007ТР',
             structure: "УПБЗН-СЪЕДИНЕНИЕ",
-            date: '20.04.2021',
+            date: new Date('2022-04-20').toLocaleDateString('bg'),
             description: 'some repair',
             price: 215.45
         },
@@ -436,7 +436,7 @@ export default function TrucksPage() {
             id: '7',
             regNumber: 'РВ6923РМ',
             structure: "01 РСПБЗН",
-            date: '13.03.2021',
+            date: new Date('2022-09-15').toLocaleDateString('bg'),
             description: 'some repair',
             price: 147.78
         },
@@ -444,7 +444,7 @@ export default function TrucksPage() {
             id: '8',
             regNumber: 'РВ3628АВ',
             structure: "01 РСПБЗН",
-            date: '11.03.2020',
+            date: new Date('2021-11-03').toLocaleDateString('bg'),
             description: 'some repair',
             price: 159.77
         },
@@ -465,8 +465,10 @@ export default function TrucksPage() {
             if (card.id === truck.id) {
                 card = truck;
                 return card;
+            } else {
+                return card;
             }
-            return card;
+
         }))
     }
 
@@ -479,18 +481,47 @@ export default function TrucksPage() {
         setFuelings([ ...fuelings, fuelingRecord ])
     }
 
+    function editFuelingRecord(fuelingRecord) {
+        setFuelings(fuelings.map((fueling) => {
+            if (fueling.id === fuelingRecord.id) {
+                fueling = fuelingRecord;
+                return fueling;
+            } else {
+                return fueling;
+            }
+
+        }))
+    }
+
+    function deleteFueling(id) {
+        setFuelings(fuelings.filter((fueling) => fueling.id !== id));
+    }
+
     function deleteService(id) {
         setServices(services.filter((service) => service.id !== id));
+    }
+
+    function addRepairRecord(repair) {
+        console.log(repair);
+        setRepairs([ ...repairs, repair ])
+    }
+
+    function editRepairRecord(repairRecord) {
+        setRepairs(repairs.map((repair) => {
+            if (repair.id === repairRecord.id) {
+                repair = repairRecord;
+                return repair;
+            } else {
+                return repair;
+            }
+
+        }))
     }
 
     function deleteRepair(id) {
         setRepairs(repairs.filter((repair) => repair.id !== id));
     }
 
-
-    function deleteFueling(id) {
-        setFuelings(fuelings.filter((fueling) => fueling.id !== id));
-    }
 
     return (
         <div className="content">
@@ -500,13 +531,19 @@ export default function TrucksPage() {
                 addTruck,
                 editTruck,
                 deleteTruck,
-                repairs: repairs.filter((repair) => repair[ `${criteria}` ].toLowerCase().includes(query.toLowerCase())),
-                deleteRepair,
-                addFuelingRecord,
+
                 fuelings: fuelings.filter((fueling) => fueling[ `${criteria}` ].toLowerCase().includes(query.toLocaleLowerCase())),
+                addFuelingRecord,
+                editFuelingRecord,
                 deleteFueling,
+
                 services: services.filter((service) => service[ `${criteria}` ].toLowerCase().includes(query.toLocaleLowerCase())),
                 deleteService,
+
+                repairs: repairs.filter((repair) => repair[ `${criteria}` ].toLowerCase().includes(query.toLowerCase())),
+                addRepairRecord,
+                editRepairRecord,
+                deleteRepair,
             }} />
         </div>
     )
