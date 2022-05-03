@@ -1,9 +1,9 @@
 import React from 'react';
 import { Nav } from "react-bootstrap";
+import CarRepairOutlinedIcon from '@mui/icons-material/CarRepairOutlined';
+import HandymanOutlinedIcon from '@mui/icons-material/HandymanOutlined';
 import LocalShippingOutlinedIcon from '@mui/icons-material/LocalShippingOutlined';
 import LocalGasStationIcon from '@mui/icons-material/LocalGasStation';
-import BuildIcon from '@mui/icons-material/Build';
-import CarRepairOutlinedIcon from '@mui/icons-material/CarRepairOutlined';
 
 import { useLocation } from "react-router-dom";
 
@@ -21,12 +21,11 @@ function TruckNav() {
                 < LocalGasStationIcon /> Гориво
             </Nav.Link>
             <Nav.Link style={{ color: "gray" }} href="/trucks/service" active={pathname === '/trucks/service'}>
-                <CarRepairOutlinedIcon /> Обслужвания
+                <CarRepairOutlinedIcon /> Обслужванe
             </Nav.Link>
             <Nav.Link style={{ color: "gray" }} href="/trucks/repairs" active={pathname === '/trucks/repairs'}>
-                <BuildIcon /> Ремонти
+                <HandymanOutlinedIcon /> Ремонт
             </Nav.Link >
-
         </Nav >
     )
 }

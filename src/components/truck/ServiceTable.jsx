@@ -18,7 +18,6 @@ import { Button, ButtonGroup } from "react-bootstrap";
 import { useOutletContext } from 'react-router-dom';
 
 function Row({ service, deleteService }) {
-
     const [ open, setOpen ] = React.useState(false);
     return (
         <React.Fragment>
@@ -50,7 +49,6 @@ function Row({ service, deleteService }) {
                     </ButtonGroup>
                 </TableCell>
             </TableRow>
-
             <TableRow>
                 <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
                     <Collapse in={open} timeout="auto" unmountOnExit>
@@ -171,3 +169,5 @@ export default function ServiceTable() {
         </TableContainer>
     )
 }
+
+

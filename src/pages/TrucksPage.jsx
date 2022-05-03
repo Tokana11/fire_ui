@@ -177,8 +177,8 @@ export default function TrucksPage() {
         {
             id: '1',
             regNumber: 'РВ6923РМ',
-            structure: "01РСПБЗН",
-            description: "Доливане на експлоатационни течности",
+            structure: "01 РСПБЗН",
+            description: "Доливане на експл. т-ти. ",
             engineOil: "Repsol 10W40",
             engineOilVol: 3,
             hydolicOil: "NHL 75W80",
@@ -195,6 +195,7 @@ export default function TrucksPage() {
             antifreezeVol: 35,
             tyres: "Laufen 19.5",
             mileage: 158656,
+            engineHoursMeter: "332.6",
             date: '01.12.2021',
             filters: {
                 oilFilter: "AMSOIL Oil Filter",
@@ -207,7 +208,7 @@ export default function TrucksPage() {
         {
             id: '2',
             regNumber: 'РВ1837РР',
-            structure: "01РСПБЗН",
+            structure: "01 РСПБЗН",
             description: "Смяна на двиг. масло",
             engineOil: "Castrol 5W30",
             engineOilVol: 35,
@@ -225,15 +226,21 @@ export default function TrucksPage() {
             antifreezeVol: 0,
             tyres: "Laufen 19.5",
             mileage: 158656,
+            engineHoursMeter: "332.6",
             date: '15.12.2021',
             filters: {
-                type: "blala"
+                oilFilter: "AMSOIL Oil Filter",
+                oilFilterQuantity: 2,
+                airFilter: "Air filter",
+                airFilterQuantity: 1,
+
             },
         },
         {
             id: '3',
             regNumber: 'РВ1836РР',
-            structure: "01РСПБЗН",
+            structure: "01 РСПБЗН",
+            description: "Смяна на двиг. масло",
             engineOil: "Castrol 5W30",
             engineOilVol: 5,
             hydolicOil: "NHL 75W80",
@@ -250,15 +257,21 @@ export default function TrucksPage() {
             antifreezeVol: 35,
             tyres: "Laufen 19.5",
             mileage: 158656,
+            engineHoursMeter: "332.6",
             date: '02.12.2021',
             filters: {
-                type: "blala"
+                oilFilter: "AMSOIL Oil Filter",
+                oilFilterQuantity: 2,
+                airFilter: "Air filter",
+                airFilterQuantity: 1,
+
             },
         },
         {
             id: '4',
             regNumber: 'РВ5741ТР',
             structure: "УПБЗН-СЪЕДИНЕНИЕ",
+            description: "Смяна на двиг. масло",
             engineOil: "Castrol 5W30",
             engineOilVol: 5,
             hydolicOil: "NHL 75W80",
@@ -275,15 +288,21 @@ export default function TrucksPage() {
             antifreezeVol: 35,
             tyres: "Laufen 19.5",
             mileage: 158656,
+            engineHoursMeter: "332.6",
             date: '01.11.2021',
             filters: {
-                type: "blala"
+                oilFilter: "",
+                oilFilterQuantity: 0,
+                airFilter: "Air filter",
+                airFilterQuantity: 1,
+
             },
         },
         {
             id: '5',
             regNumber: 'РВ0007ТР',
             structure: "УПБЗН-СЪЕДИНЕНИЕ",
+            description: "Смяна на двиг. масло",
             engineOil: "Castrol 5W30",
             engineOilVol: 5,
             hydolicOil: "NHL 75W80",
@@ -300,6 +319,7 @@ export default function TrucksPage() {
             antifreezeVol: 35,
             tyres: "Laufen 19.5",
             mileage: 158656,
+            engineHoursMeter: "222.6",
             date: '18.12.2021',
             filters: {
                 type: "blala"
@@ -309,6 +329,7 @@ export default function TrucksPage() {
             id: '6',
             regNumber: 'РВ0007ТР',
             structure: "УПБЗН-СЪЕДИНЕНИЕ",
+            description: "Смяна на двиг. масло",
             engineOil: "Castrol 5W30",
             engineOilVol: 5,
             hydolicOil: "NHL 75W80",
@@ -325,6 +346,7 @@ export default function TrucksPage() {
             antifreezeVol: 35,
             tyres: "Laufen 19.5",
             mileage: 158656,
+            engineHoursMeter: "112.6",
             date: '20.04.2021',
             filters: {
                 type: "blala"
@@ -334,6 +356,7 @@ export default function TrucksPage() {
             id: '7',
             regNumber: 'РВ6923РМ',
             structure: "01 РСПБЗН",
+            description: "Смяна на двиг. масло",
             engineOil: "Castrol 5W30",
             engineOilVol: 5,
             hydolicOil: "NHL 75W80",
@@ -359,6 +382,7 @@ export default function TrucksPage() {
             id: '8',
             regNumber: 'РВ3628АВ',
             structure: "01 РСПБЗН",
+            description: "Смяна на двиг. масло",
             engineOil: "Castrol 5W30",
             engineOilVol: 5,
             hydolicOil: "NHL 75W80",
@@ -375,6 +399,7 @@ export default function TrucksPage() {
             antifreezeVol: 35,
             tyres: "Laufen 19.5",
             mileage: 158656,
+            engineHoursMeter: "332.6",
             date: '11.03.2020',
             filters: {
                 oilFilter: "Маслен филтър",
@@ -497,6 +522,11 @@ export default function TrucksPage() {
         setFuelings(fuelings.filter((fueling) => fueling.id !== id));
     }
 
+    function addServiceRecord(service) {
+        console.log(service);
+        setServices([ ...services, service ])
+    }
+
     function deleteService(id) {
         setServices(services.filter((service) => service.id !== id));
     }
@@ -538,6 +568,7 @@ export default function TrucksPage() {
                 deleteFueling,
 
                 services: services.filter((service) => service[ `${criteria}` ].toLowerCase().includes(query.toLocaleLowerCase())),
+                addServiceRecord,
                 deleteService,
 
                 repairs: repairs.filter((repair) => repair[ `${criteria}` ].toLowerCase().includes(query.toLowerCase())),

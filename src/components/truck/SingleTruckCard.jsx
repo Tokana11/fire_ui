@@ -56,16 +56,17 @@ function SingleTruckCard(props) {
                     <Row>
                         <Col>
                             <EditTruck
-                                id={props.id}
+                                id={id}
                                 card={props.card}
                                 editTruck={editTruck}
                             />
                         </Col>
                         <Col>
-                            <DeleteDialog id={id}
+                            <DeleteDialog
+                                id={id}
                                 type={'truck'}
                                 deleteTruck={deleteTruck}
-                                deleteMessage={`данните за пожарен автомобил с рег. № ${props.card.regNumber} `}
+                                deleteMessage={`данните за пожарен автомобил с рег. № ${regNumber} `}
                                 buttonLabel={'Изтрий'}
                             />
                         </Col>
