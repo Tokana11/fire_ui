@@ -193,17 +193,22 @@ export default function TrucksPage() {
             brakeFluidVol: 1.5,
             antifreeze: "G12 red",
             antifreezeVol: 35,
-            tyres: "Laufen 19.5",
+            tyres: "",
             mileage: 158656,
             engineHoursMeter: "332.6",
             date: '01.12.2021',
             filters: {
-                oilFilter: "AMSOIL Oil Filter",
-                oilFilterQuantity: 2,
                 airFilter: "Air filter",
+                airFilterChanged: true,
                 airFilterQuantity: 1,
-
+                fuelFilter: "Fuel filter",
+                fuelFilterChanged: true,
+                fuelFilterQuantity: 2,
+                oilFilter: "AMSOIL Oil Filter",
+                oilFilterChanged: true,
+                oilFilterQuantity: 2
             },
+            message:"Сменен филтър дехидратор. Гресиране на каретата на кардана."
         },
         {
             id: '2',
@@ -224,17 +229,22 @@ export default function TrucksPage() {
             brakeFluidVol: 0,
             antifreeze: "G12 red",
             antifreezeVol: 0,
-            tyres: "Laufen 19.5",
+            tyres: "Laufen 195/55 R15 - предни / Laufen 200/55 R15 - задни",
             mileage: 158656,
             engineHoursMeter: "332.6",
             date: '15.12.2021',
             filters: {
-                oilFilter: "AMSOIL Oil Filter",
-                oilFilterQuantity: 2,
                 airFilter: "Air filter",
-                airFilterQuantity: 1,
-
+                airFilterChanged: false,
+                airFilterQuantity: 0,
+                fuelFilter: "Fuel filter",
+                fuelFilterChanged: false,
+                fuelFilterQuantity: 0,
+                oilFilter: "AMSOIL Oil Filter",
+                oilFilterChanged: true,
+                oilFilterQuantity: 2
             },
+            message:''
         },
         {
             id: '3',
@@ -260,12 +270,17 @@ export default function TrucksPage() {
             engineHoursMeter: "332.6",
             date: '02.12.2021',
             filters: {
-                oilFilter: "AMSOIL Oil Filter",
-                oilFilterQuantity: 2,
                 airFilter: "Air filter",
-                airFilterQuantity: 1,
-
+                airFilterChanged: false,
+                airFilterQuantity: 0,
+                fuelFilter: "Fuel filter",
+                fuelFilterChanged: true,
+                fuelFilterQuantity: 2,
+                oilFilter: "AMSOIL Oil Filter",
+                oilFilterChanged: false,
+                oilFilterQuantity: 0
             },
+            message:'Смяна на О-пръстени охлдаителна система.'
         },
         {
             id: '4',
@@ -291,12 +306,17 @@ export default function TrucksPage() {
             engineHoursMeter: "332.6",
             date: '01.11.2021',
             filters: {
-                oilFilter: "",
-                oilFilterQuantity: 0,
                 airFilter: "Air filter",
-                airFilterQuantity: 1,
-
+                airFilterChanged: false,
+                airFilterQuantity: 0,
+                fuelFilter: "Fuel filter",
+                fuelFilterChanged: false,
+                fuelFilterQuantity: 0,
+                oilFilter: "AMSOIL Oil Filter",
+                oilFilterChanged: false,
+                oilFilterQuantity: 0
             },
+            message:'Смяна на прени накладки и дискове.'
         },
         {
             id: '5',
@@ -322,8 +342,17 @@ export default function TrucksPage() {
             engineHoursMeter: "222.6",
             date: '18.12.2021',
             filters: {
-                type: "blala"
+                airFilter: "Air filter",
+                airFilterChanged: false,
+                airFilterQuantity: 0,
+                fuelFilter: "Fuel filter",
+                fuelFilterChanged: false,
+                fuelFilterQuantity: 0,
+                oilFilter: "AMSOIL Oil Filter",
+                oilFilterChanged: false,
+                oilFilterQuantity: 0
             },
+            message:''
         },
         {
             id: '6',
@@ -349,8 +378,17 @@ export default function TrucksPage() {
             engineHoursMeter: "112.6",
             date: '20.04.2021',
             filters: {
-                type: "blala"
+                airFilter: "Air filter",
+                airFilterChanged: true,
+                airFilterQuantity: 2,
+                fuelFilter: "Fuel filter",
+                fuelFilterChanged: true,
+                fuelFilterQuantity: 1,
+                oilFilter: "AMSOIL Oil Filter",
+                oilFilterChanged: true,
+                oilFilterQuantity: 1
             },
+            message:'Смяна на маркучи на спирачки.'
         },
         {
             id: '7',
@@ -375,8 +413,17 @@ export default function TrucksPage() {
             mileage: 158656,
             date: '13.03.2021',
             filters: {
-                type: "blala"
+                airFilter: "Air filter",
+                airFilterChanged: true,
+                airFilterQuantity: 2,
+                fuelFilter: "Fuel filter",
+                fuelFilterChanged: true,
+                fuelFilterQuantity: 1,
+                oilFilter: "AMSOIL Oil Filter",
+                oilFilterChanged: true,
+                oilFilterQuantity: 1
             },
+            message:''
         },
         {
             id: '8',
@@ -402,9 +449,17 @@ export default function TrucksPage() {
             engineHoursMeter: "332.6",
             date: '11.03.2020',
             filters: {
-                oilFilter: "Маслен филтър",
-                oilFilterQuantity: 2
+                airFilter: "Air filter",
+                airFilterChanged: true,
+                airFilterQuantity: 2,
+                fuelFilter: "Fuel filter",
+                fuelFilterChanged: true,
+                fuelFilterQuantity: 1,
+                oilFilter: "AMSOIL Oil Filter",
+                oilFilterChanged: true,
+                oilFilterQuantity: 1
             },
+            message:''
         },
     ])
 

@@ -33,7 +33,7 @@ export default function AddServiceRecord({ addServiceRecord }) {
 
     const [ structure, setStructure ] = React.useState('');
 
-     const [ airFilterChanged, setAirFilterChanged ] = React.useState(false);
+    const [ airFilterChanged, setAirFilterChanged ] = React.useState(false);
 
     const [ oilFilterChanged, setOilFilterChanged ] = React.useState(false);
 
@@ -68,10 +68,17 @@ export default function AddServiceRecord({ addServiceRecord }) {
             mileage: '',
             date: '',
             filters: {
-                airFilter: false,
-                oilFilter: false,
-                fuelFilter: false
+                airFilter: '',
+                airFilterChanged: false,
+                airFilterQuantity: '',
+                oilFilter: '',
+                oilFilterChanged: false,
+                oilFilterQuantity: '',
+                fuelFilter: '',
+                fuelFilterChanged: false,
+                fuelFilterQuantity: ''
             },
+            message:''
         }
 
     });
@@ -121,7 +128,7 @@ export default function AddServiceRecord({ addServiceRecord }) {
         data.transmissinOilVol = Number.parseFloat(data.transmissinOilVol);
         data.pumpOilVol = Number.parseFloat(data.pumpOilVol);
         data.brakeFluidVol = Number.parseFloat(data.brakeFluidVol);
-        data.antifreezeVol = Number.parseFloat(data.antifreezeVolNumber);
+        data.antifreezeVol = Number.parseFloat(data.antifreezeVol);
         data.filters.airFilter = airFilterChanged;
         data.filters.oilFilter = oilFilterChanged;
         data.filters.fuelFilter = fuelFilterChanged;
@@ -331,13 +338,6 @@ export default function AddServiceRecord({ addServiceRecord }) {
                             </Grid>
                             <Grid item >
                                 <TextField
-                                    id="service-decription"
-                                    label="Гуми:"
-                                    {...register("tyres", {
-                                        required: 'Въведете описание на извършената дейност!',
-                                    })}
-                                />
-                                <TextField
                                     label="Километраж:"
                                     variant="outlined"
                                     {...register("mileage", {
@@ -348,8 +348,6 @@ export default function AddServiceRecord({ addServiceRecord }) {
                                         }
                                     })}
                                 />
-                            </Grid>
-                            <Grid item >
                                 <TextField
                                     label="Моточасовник:"
                                     variant="outlined"
@@ -361,13 +359,32 @@ export default function AddServiceRecord({ addServiceRecord }) {
                                         }
                                     })}
                                 />
+                            </Grid>
+                            <Grid item >
                                 <TextField
-                                    id="service-decription"
-                                    label="Описание:"
+                                    label="Гуми:"
                                     multiline
-                                    rows={4}
+                                    rows={2}
+                                    {...register("tyres", {
+                                        required: 'Въведете описание на извършената дейност!',
+                                    })}
+                                />
+                                <TextField
+                                    label="Вид на дейността:"
+                                    multiline
+                                    rows={2}
                                     {...register("description", {
                                         required: 'Въведете описание на извършената дейност!',
+                                    })}
+                                />
+                            </Grid>
+                            <Grid item>
+                                <TextField
+                                    label="Друго:"
+                                    multiline
+                                    rows={4}
+                                    {...register("message", {
+                                        required: 'Въведете описание на допълнително извършена дейност!',
                                     })}
                                 />
                             </Grid>
@@ -376,7 +393,6 @@ export default function AddServiceRecord({ addServiceRecord }) {
                                 <Divider />
                                 Въздушен филтър
                                 <Switch
-                                    // checked={airFilterChanged}
                                     {...register("airFilter", {
                                         required: 'Въведете описание на извършената дейност!',
                                     })}
