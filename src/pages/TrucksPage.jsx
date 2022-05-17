@@ -193,10 +193,17 @@ export default function TrucksPage() {
             brakeFluidVol: 1.5,
             antifreeze: "G12 red",
             antifreezeVol: 35,
-            tyres: "",
+            tires: {
+                frontTires: '',
+                frontTiresChanged: false,
+                frontTiresQuantity: 0,
+                rearTires: '',
+                rearTiresChanged: false,
+                rearTiresQuantity: 0,
+            },
             mileage: 158656,
             engineHoursMeter: "332.6",
-            date: '01.12.2021',
+            date: new Date("2021-12-01").toDateString(),
             filters: {
                 airFilter: "Air filter",
                 airFilterChanged: true,
@@ -208,43 +215,49 @@ export default function TrucksPage() {
                 oilFilterChanged: true,
                 oilFilterQuantity: 2
             },
-            message:"Сменен филтър дехидратор. Гресиране на каретата на кардана."
+            message: "Сменен филтър дехидратор. Гресиране на каретата на кардана."
         },
         {
             id: '2',
             regNumber: 'РВ1837РР',
-            structure: "01 РСПБЗН",
-            description: "Смяна на двиг. масло",
-            engineOil: "Castrol 5W30",
-            engineOilVol: 35,
-            hydolicOil: "",
-            hydolicOilVol: 0,
-            differentialOil: "",
-            differentialOilVol: 0,
-            transmissinOil: "TransM OIL",
-            transmissinOilVol: 0,
-            pumpOil: "NHL 80W90",
-            pumpOilVol: 0,
-            brakeFluid: "Some fluid",
-            brakeFluidVol: 0,
-            antifreeze: "G12 red",
-            antifreezeVol: 0,
-            tyres: "Laufen 195/55 R15 - предни / Laufen 200/55 R15 - задни",
-            mileage: 158656,
-            engineHoursMeter: "332.6",
-            date: '15.12.2021',
-            filters: {
-                airFilter: "Air filter",
-                airFilterChanged: false,
-                airFilterQuantity: 0,
-                fuelFilter: "Fuel filter",
-                fuelFilterChanged: false,
-                fuelFilterQuantity: 0,
-                oilFilter: "AMSOIL Oil Filter",
-                oilFilterChanged: true,
-                oilFilterQuantity: 2
+            structure: '01 РСПБЗН',
+            description: 'Смяна на филтри',
+            engineOil: '',
+            engineOilVol: '',
+            hydolicOil: '',
+            hydolicOilVol: '',
+            differentialOil: '',
+            differentialOilVol: '',
+            transmissinOil: '',
+            transmissinOilVol: '',
+            pumpOil: '',
+            pumpOilVol: '',
+            brakeFluid: '',
+            brakeFluidVol: '',
+            antifreeze: '',
+            antifreezeVol: '',
+            tires: {
+                frontTires: '',
+                frontTiresChanged: false,
+                frontTiresQuantity: '',
+                rearTires: '',
+                rearTiresChanged: false,
+                rearTiresQuantity: '',
             },
-            message:''
+            mileage: '',
+            date: new Date("2021-09-01").toDateString(),
+            filters: {
+                airFilter: 'Air filter',
+                airFilterChanged: true,
+                airFilterQuantity: 2,
+                oilFilter: 'Oil filter',
+                oilFilterChanged: true,
+                oilFilterQuantity: 1,
+                fuelFilter: 'Fule filter',
+                fuelFilterChanged: true,
+                fuelFilterQuantity: 2
+            },
+            message: ''
         },
         {
             id: '3',
@@ -265,10 +278,17 @@ export default function TrucksPage() {
             brakeFluidVol: 1.5,
             antifreeze: "G12 red",
             antifreezeVol: 35,
-            tyres: "Laufen 19.5",
+            tires: {
+                frontTires: 'Michelin 195/55 R15',
+                frontTiresChanged: true,
+                frontTiresQuantity: 2,
+                rearTires: 'Michelin 200/55 R15',
+                rearTiresChanged: true,
+                rearTiresQuantity: 4,
+            },
             mileage: 158656,
             engineHoursMeter: "332.6",
-            date: '02.12.2021',
+            date: new Date("2021-12-02").toDateString(),
             filters: {
                 airFilter: "Air filter",
                 airFilterChanged: false,
@@ -280,7 +300,7 @@ export default function TrucksPage() {
                 oilFilterChanged: false,
                 oilFilterQuantity: 0
             },
-            message:'Смяна на О-пръстени охлдаителна система.'
+            message: 'Смяна на О-пръстени охлдаителна система.'
         },
         {
             id: '4',
@@ -301,22 +321,29 @@ export default function TrucksPage() {
             brakeFluidVol: 1.5,
             antifreeze: "G12 red",
             antifreezeVol: 35,
-            tyres: "Laufen 19.5",
+            tires: {
+                frontTires: 'Michelin 195/55 R15',
+                frontTiresChanged: true,
+                frontTiresQuantity: 2,
+                rearTires: '',
+                rearTiresChanged: false,
+                rearTiresQuantity: 0,
+            },
             mileage: 158656,
             engineHoursMeter: "332.6",
-            date: '01.11.2021',
+            date: new Date("2021-11-01").toDateString(),
             filters: {
                 airFilter: "Air filter",
-                airFilterChanged: false,
-                airFilterQuantity: 0,
+                airFilterChanged: true,
+                airFilterQuantity: 1,
                 fuelFilter: "Fuel filter",
-                fuelFilterChanged: false,
-                fuelFilterQuantity: 0,
+                fuelFilterChanged: true,
+                fuelFilterQuantity: 2,
                 oilFilter: "AMSOIL Oil Filter",
-                oilFilterChanged: false,
-                oilFilterQuantity: 0
+                oilFilterChanged: true,
+                oilFilterQuantity: 1
             },
-            message:'Смяна на прени накладки и дискове.'
+            message: 'Смяна на прени накладки и дискове.'
         },
         {
             id: '5',
@@ -337,22 +364,29 @@ export default function TrucksPage() {
             brakeFluidVol: 1.5,
             antifreeze: "G12 red",
             antifreezeVol: 35,
-            tyres: "Laufen 19.5",
+            tires: {
+                frontTires: '',
+                frontTiresChanged: false,
+                frontTiresQuantity: 0,
+                rearTires: 'Michelin 200/55 R15',
+                rearTiresChanged: true,
+                rearTiresQuantity: 4,
+            },
             mileage: 158656,
             engineHoursMeter: "222.6",
-            date: '18.12.2021',
+            date:  new Date("2021-12-18").toDateString(),
             filters: {
-                airFilter: "Air filter",
+                airFilter: "",
                 airFilterChanged: false,
                 airFilterQuantity: 0,
-                fuelFilter: "Fuel filter",
+                fuelFilter: "",
                 fuelFilterChanged: false,
                 fuelFilterQuantity: 0,
-                oilFilter: "AMSOIL Oil Filter",
+                oilFilter: "",
                 oilFilterChanged: false,
                 oilFilterQuantity: 0
             },
-            message:''
+            message: ''
         },
         {
             id: '6',
@@ -373,10 +407,17 @@ export default function TrucksPage() {
             brakeFluidVol: 1.5,
             antifreeze: "G12 red",
             antifreezeVol: 35,
-            tyres: "Laufen 19.5",
+            tires: {
+                frontTires: '',
+                frontTiresChanged: false,
+                frontTiresQuantity: 0,
+                rearTires: '',
+                rearTiresChanged: false,
+                rearTiresQuantity: 0,
+            },
             mileage: 158656,
             engineHoursMeter: "112.6",
-            date: '20.04.2021',
+            date: new Date("2021-04-20").toDateString(),
             filters: {
                 airFilter: "Air filter",
                 airFilterChanged: true,
@@ -388,7 +429,7 @@ export default function TrucksPage() {
                 oilFilterChanged: true,
                 oilFilterQuantity: 1
             },
-            message:'Смяна на маркучи на спирачки.'
+            message: 'Смяна на маркучи на спирачки.'
         },
         {
             id: '7',
@@ -409,9 +450,16 @@ export default function TrucksPage() {
             brakeFluidVol: 1.5,
             antifreeze: "G12 red",
             antifreezeVol: 35,
-            tyres: "Laufen 19.5",
+            tires: {
+                frontTires: '',
+                frontTiresChanged: false,
+                frontTiresQuantity: 0,
+                rearTires: 'Michelin 200/55 R15',
+                rearTiresChanged: true,
+                rearTiresQuantity: 4,
+            },
             mileage: 158656,
-            date: '13.03.2021',
+            date: new Date("2021-03-13").toDateString(),
             filters: {
                 airFilter: "Air filter",
                 airFilterChanged: true,
@@ -423,7 +471,7 @@ export default function TrucksPage() {
                 oilFilterChanged: true,
                 oilFilterQuantity: 1
             },
-            message:''
+            message: ''
         },
         {
             id: '8',
@@ -444,10 +492,17 @@ export default function TrucksPage() {
             brakeFluidVol: 1.5,
             antifreeze: "G12 red",
             antifreezeVol: 35,
-            tyres: "Laufen 19.5",
+            tires: {
+                frontTires: '',
+                frontTiresChanged: false,
+                frontTiresQuantity: 0,
+                rearTires: 'Michelin 200/55 R15',
+                rearTiresChanged: true,
+                rearTiresQuantity: 4,
+            },
             mileage: 158656,
             engineHoursMeter: "332.6",
-            date: '11.03.2020',
+            date: new Date("2020-03-11").toDateString(),
             filters: {
                 airFilter: "Air filter",
                 airFilterChanged: true,
@@ -459,7 +514,7 @@ export default function TrucksPage() {
                 oilFilterChanged: true,
                 oilFilterQuantity: 1
             },
-            message:''
+            message: ''
         },
     ])
 
@@ -582,6 +637,18 @@ export default function TrucksPage() {
         setServices([ ...services, service ])
     }
 
+    function editServiceRecord(serviceRecord) {
+        setFuelings(services.map((service) => {
+            if (service.id === serviceRecord.id) {
+                service = serviceRecord;
+                return service;
+            } else {
+                return service;
+            }
+        }))
+        console.log(serviceRecord)
+    }
+
     function deleteService(id) {
         setServices(services.filter((service) => service.id !== id));
     }
@@ -624,6 +691,7 @@ export default function TrucksPage() {
 
                 services: services.filter((service) => service[ `${criteria}` ].toLowerCase().includes(query.toLocaleLowerCase())),
                 addServiceRecord,
+                editServiceRecord,
                 deleteService,
 
                 repairs: repairs.filter((repair) => repair[ `${criteria}` ].toLowerCase().includes(query.toLowerCase())),

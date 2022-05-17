@@ -22,7 +22,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
-
+import EditServiceRecord from './EditServiceRecord';
 
 function ServiceDetails({ service }) {
 
@@ -64,6 +64,17 @@ function ServiceDetails({ service }) {
         createLiquidsData('Антифриз', service.antifreeze, service.antifreezeVol)
     ];
 
+
+    function createTiresData(type, changed, brand, quantity) {
+        return { type, changed, brand, quantity };
+    }
+
+    const tires = [
+        createTiresData('Предни гуми', service.tires.frontTiresChanged, service.tires.frontTires, service.tires.frontTiresQuantity),
+        createTiresData('Задни гуми', service.tires.rearTiresChanged, service.tires.rearTires, service.tires.rearTiresQuantity),
+    ];
+
+
     function createFilterData(type, changed, serialNumber, quantity) {
         return { type, changed, serialNumber, quantity }
     }
@@ -95,6 +106,7 @@ function ServiceDetails({ service }) {
                     <Grid container spacing={3}>
                         <Grid item>
                             <Divider ><h6>Eксплоатацинни течности</h6></Divider>
+                            <br />
                             <TableContainer component={Paper}>
                                 <Table sx={{ minWidth: 550 }}>
                                     <TableHead>
@@ -120,7 +132,7 @@ function ServiceDetails({ service }) {
                                             >
                                                 <TableCell align="left">{liquid.type}</TableCell>
                                                 <TableCell align="center">{liquid.brand !== '' ? liquid.brand : '-'}</TableCell>
-                                                <TableCell align="center">{liquid.quantity !== 0 ? liquid.quantity : '-'}</TableCell>
+                                                <TableCell align="center">{isNaN(liquid.quantity) ? '-' : liquid.quantity}</TableCell>
                                             </TableRow>
                                         ))}
 
@@ -154,7 +166,7 @@ function ServiceDetails({ service }) {
                                             >
                                                 <TableCell align="left">{filter.type}</TableCell>
                                                 <TableCell align="center">{filter.changed ? 'да' : 'не'}</TableCell>
-                                                <TableCell align="center">{filter.serialNumber}</TableCell>
+                                                <TableCell align="center">{filter.serialNumber !== '' ? filter.serialNumber : '-'}</TableCell>
                                                 <TableCell align="center">{filter.changed ? filter.quantity : '-'}</TableCell>
                                             </TableRow>
                                         ))}
@@ -164,11 +176,48 @@ function ServiceDetails({ service }) {
                         </Grid>
                         <Grid item sx={{ width: '100%' }}>
                             <Divider><h6>Гуми</h6></Divider>
-                            {service.tyres !== '' ? service.tyres : 'При извършване на обслужването не са сменяни гуми!'}
+                            <br />
+                            <TableContainer component={Paper}>
+                                <Table sx={{ minWidth: 550 }}>
+                                    <TableHead>
+                                        <TableRow>
+                                            <TableCell align="left">тип</TableCell>
+                                            <TableCell align="center">
+                                                смяна
+                                            </TableCell>
+                                            <TableCell align="center">
+                                                марка/размер
+                                            </TableCell>
+                                            <TableCell align="center">
+                                                количество
+                                            </TableCell>
+                                        </TableRow>
+                                    </TableHead>
+                                    <TableBody>
+                                        {tires.map((tire) => (
+
+                                            <TableRow
+                                                key={tire.type}
+                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                            >
+                                                <TableCell align="left">{tire.type}</TableCell>
+                                                <TableCell align="center">{tire.changed ? 'да' : 'не'}</TableCell>
+                                                <TableCell align="center">{tire.brand !== '' ? tire.brand : '-'}</TableCell>
+                                                <TableCell align="center">{tire.changed ? tire.quantity : '-'}</TableCell>
+                                            </TableRow>
+
+                                        ))}
+                                    </TableBody>
+                                </Table>
+                            </TableContainer>
+
+
+
                         </Grid>
                         <Grid item sx={{ width: '100%' }}>
                             <Divider><h6>Други</h6></Divider>
-                            {service.message !== '' ? <p>{service.message}</p>: <p>Няма данни за извършени други дейности по обслужване на автомобила!</p>}
+                            <br />
+                            {service.message !== '' ? <p>{service.message}</p> : <p>Няма данни за извършени други дейности по обслужване на автомобила!</p>}
                         </Grid>
                     </Grid>
                 </DialogContent>
@@ -186,7 +235,7 @@ function ServiceDetails({ service }) {
     );
 }
 
-export default function ServiceCard({ service, deleteService }) {
+export default function ServiceCard({ service, editServiceRecord, deleteService }) {
     return (
         <Grid item >
             <Card sx={{ maxWidth: 300, marginTop: 3 }}>
@@ -230,13 +279,18 @@ export default function ServiceCard({ service, deleteService }) {
                                 justifyContent="space-between"
                                 alignItems="flex-end"
                             >
-                                <Button variant="contained" color="success">Edit</Button>
+                                <EditServiceRecord
+                                    id={service.id}
+                                    service={service}
+                                    editServiceRecord={editServiceRecord}
+                                />
                                 <DeleteDialog
                                     id={service.id}
                                     buttonLabel={'Изтрий'}
                                     type={'service'}
                                     deleteService={deleteService}
-                                    deleteMessage={`запис за обслужване с №: ${service.id} от ${service.date} за пожарен автомобил с рег. № ${service.regNumber} `} />
+                                    deleteMessage={`запис за обслужване с №: ${service.id} от ${service.date} за пожарен автомобил с рег. № ${service.regNumber} `}
+                                />
                             </Grid>
                         </Grid>
                     </Box>

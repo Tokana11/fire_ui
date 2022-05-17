@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { useOutletContext } from 'react-router-dom';
 import { useForm, Controller } from 'react-hook-form';
-import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import Autocomplete from '@mui/material/Autocomplete';
 import Box from '@mui/material/Box';
 import bgLocale from 'date-fns/locale/bg';
 import Button from '@mui/material/Button';
+import CreateOutlinedIcon from '@mui/icons-material/CreateOutlined';
 import DatePicker from '@mui/lab/DatePicker';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
@@ -21,7 +21,7 @@ const localeMap = {
     bg: bgLocale
 }
 
-export default function AddServiceRecord({ addServiceRecord }) {
+export default function EditServiceRecord({ service, editServiceRecord }) {
 
     const { cards } = useOutletContext();
 
@@ -33,15 +33,15 @@ export default function AddServiceRecord({ addServiceRecord }) {
 
     const [ structure, setStructure ] = React.useState('');
 
-    const [ airFilterChanged, setAirFilterChanged ] = React.useState(false);
+    const [ airFilterChanged, setAirFilterChanged ] = React.useState(service.filters.airFilterChanged);
 
-    const [ oilFilterChanged, setOilFilterChanged ] = React.useState(false);
+    const [ oilFilterChanged, setOilFilterChanged ] = React.useState(service.filters.oilFilterChanged);
 
-    const [ fuelFilterChanged, setFuelFilterChanged ] = React.useState(false);
+    const [ fuelFilterChanged, setFuelFilterChanged ] = React.useState(service.filters.fuelFilterChanged);
 
-    const [ frontTiresChanged, setFrontTiresChanged ] = React.useState(false);
+    const [ frontTiresChanged, setFrontTiresChanged ] = React.useState(service.tires.frontTiresChanged);
 
-    const [ rearTiresChanged, setRearTiresChanged ] = React.useState(false);
+    const [ rearTiresChanged, setRearTiresChanged ] = React.useState(service.tires.rearTiresChanged);
 
     const {
         register,
@@ -51,46 +51,47 @@ export default function AddServiceRecord({ addServiceRecord }) {
         formState: { errors }
     } = useForm({
         defaultValues: {
-            regNumber: '',
-            structure: '',
-            description: '',
-            engineOil: '',
-            engineOilVol: '',
-            hydolicOil: '',
-            hydolicOilVol: '',
-            differentialOil: '',
-            differentialOilVol: '',
-            transmissinOil: '',
-            transmissinOilVol: '',
-            pumpOil: '',
-            pumpOilVol: '',
-            brakeFluid: '',
-            brakeFluidVol: '',
-            antifreeze: '',
-            antifreezeVol: '',
+            id: service.id,
+            regNumber: service.regNumber,
+            structure: service.structure,
+            description: service.description,
+            engineOil: service.engineOil,
+            engineOilVol: service.engineOilVol,
+            hydolicOil: service.hydolicOil,
+            hydolicOilVol: service.hydolicOilVol,
+            differentialOil: service.differentialOil,
+            differentialOilVol: service.differentialOilVol,
+            transmissinOil: service.transmissinOil,
+            transmissinOilVol: service.transmissinOilVol,
+            pumpOil: service.pumpOil,
+            pumpOilVol: service.pumpOilVol,
+            brakeFluid: service.brakeFluid,
+            brakeFluidVol: service.brakeFluidVol,
+            antifreeze: service.antifreeze,
+            antifreezeVol: service.antifreezeVol,
             tires: {
-                frontTires: '',
-                frontTiresChanged: false,
-                frontTiresQuantity: '',
-                rearTires: '',
-                rearTiresChanged: false,
-                rearTiresQuantity: '',
+                frontTires: service.tires.frontTires,
+                frontTiresChanged: service.tires.frontTiresChanged,
+                frontTiresQuantity: service.tires.frontTiresQuantity,
+                rearTires: service.tires.rearTires,
+                rearTiresChanged: service.tires.rearTiresChanged,
+                rearTiresQuantity: service.tires.rearTiresQuantity
             },
-            mileage: '',
-            engineHoursMeter:'',
-            date: new Date(),
+            mileage: service.mileage,
+            engineHoursMeter: service.engineHoursMeter,
+            date: service.date,
             filters: {
-                airFilter: '',
-                airFilterChanged: false,
-                airFilterQuantity: '',
-                oilFilter: '',
-                oilFilterChanged: false,
-                oilFilterQuantity: '',
-                fuelFilter: '',
-                fuelFilterChanged: false,
-                fuelFilterQuantity: ''
+                airFilter: service.filters.airFilter,
+                airFilterChanged: service.filters.airFilterChanged,
+                airFilterQuantity: service.filters.airFilterQuantity,
+                oilFilter: service.filters.oilFilter,
+                oilFilterChanged: service.filters.oilFilterChanged,
+                oilFilterQuantity: service.filters.oilFilterQuantity,
+                fuelFilter: service.filters.fuelFilter,
+                fuelFilterChanged: service.filters.fuelFilterChanged,
+                fuelFilterQuantity: service.filters.fuelFilterQuantity
             },
-            message: ''
+            message: service.message
         }
 
     });
@@ -107,7 +108,6 @@ export default function AddServiceRecord({ addServiceRecord }) {
     function getStructuteByTruckRegNum(regNumber) {
         cards.forEach(element => {
             if (element.regNumber === regNumber) {
-                console.log(element.structure)
                 setStructure(element.structure);
             }
         });
@@ -138,7 +138,7 @@ export default function AddServiceRecord({ addServiceRecord }) {
         setRearTiresChanged(event.target.checked)
     }
 
-    const addRecord = (data) => {
+    const editRecord = (data) => {
         data.structure = structure;
         data.engineOilVol = Number.parseFloat(data.engineOilVol);
         data.hydolicOilVol = Number.parseFloat(data.hydolicOilVol);
@@ -152,19 +152,20 @@ export default function AddServiceRecord({ addServiceRecord }) {
         data.filters.airFilterChanged = airFilterChanged;
         data.filters.oilFilterChanged = oilFilterChanged;
         data.filters.fuelFilterChanged = fuelFilterChanged;
-        addServiceRecord(data)
+        editServiceRecord(data)
         handleClose();
     }
-    
+
     return (
         <div>
             <Button
-                size='small'
-                variant='contained'
-                sx={{ position: 'fixed', bottom: 16, right: 16, background: '#1a535c' }}
-                onClick={handleClickOpen}
-            >
-                <AddCircleOutlineOutlinedIcon />
+                style={{
+                    backgroundColor: "#1a535c",
+                }}
+                size="small"
+                variant="contained"
+                onClick={handleClickOpen}>
+                <CreateOutlinedIcon /> Редак.
             </Button>
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle>Добавяне на запис:</DialogTitle>
@@ -177,7 +178,7 @@ export default function AddServiceRecord({ addServiceRecord }) {
                         onSubmit={handleSubmit((data) => {
                             let formatedDate = new Date(data.date).toLocaleDateString(locale)
                             data.date = formatedDate;
-                            addRecord(data);
+                            editRecord(data);
                             reset();
                         })}
                     >
@@ -186,6 +187,7 @@ export default function AddServiceRecord({ addServiceRecord }) {
                                 <Grid item xs={6}>
                                     <Autocomplete
                                         disablePortal
+                                        defaultValue={service.regNumber}
                                         options={regNumOptions}
                                         onChange={(_event, regNumber) => {
                                             getStructuteByTruckRegNum(regNumber)
@@ -208,6 +210,7 @@ export default function AddServiceRecord({ addServiceRecord }) {
                                             <LocalizationProvider dateAdapter={AdapterDateFns} locale={localeMap[ locale ]}>
                                                 <DatePicker
                                                     label={'Дата'}
+                                                    defaultValue={field.date}
                                                     value={field.value}
                                                     onChange={(date) => handleChange(date, field)}
                                                     renderInput={(params) => (
@@ -440,6 +443,7 @@ export default function AddServiceRecord({ addServiceRecord }) {
                                 <Grid item xs={2}>
                                     <h6>Смянa:</h6>
                                     <Switch
+                                        checked={airFilterChanged}
                                         onChange={handleAirSwitchChange}
                                         inputProps={{ 'aria-label': 'controlled' }}
                                     />
@@ -466,6 +470,7 @@ export default function AddServiceRecord({ addServiceRecord }) {
                                 <Grid item xs={2}>
                                     <br />
                                     <Switch
+                                        checked={fuelFilterChanged}
                                         onChange={handleFuelSwitchChange}
                                         inputProps={{ 'aria-label': 'controlled' }}
                                     />
@@ -491,6 +496,7 @@ export default function AddServiceRecord({ addServiceRecord }) {
                                 <Grid item xs={2}>
                                     <br />
                                     <Switch
+                                        checked={oilFilterChanged}
                                         onChange={handleOilSwitchChange}
                                         inputProps={{ 'aria-label': 'controlled' }}
                                     />
@@ -520,6 +526,7 @@ export default function AddServiceRecord({ addServiceRecord }) {
                                 <Grid item xs={4}>
                                     <h6>Смяна:</h6>
                                     <Switch
+                                        checked={frontTiresChanged}
                                         onChange={handleFrontTiresChanged}
                                         inputProps={{ 'aria-label': 'controlled' }}
                                     />
@@ -544,6 +551,7 @@ export default function AddServiceRecord({ addServiceRecord }) {
                                     <Grid item xs={4}>
                                         <h6>Смяна:</h6>
                                         <Switch
+                                            checked={rearTiresChanged}
                                             onChange={handleRearTiresChanged}
                                             inputProps={{ 'aria-label': 'controlled' }}
                                         />

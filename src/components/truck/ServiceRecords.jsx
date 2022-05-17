@@ -10,6 +10,8 @@ export default function ServiceRecords() {
 
     const { addServiceRecord } = useOutletContext();
 
+    const {editServiceRecord} = useOutletContext();
+
     const { deleteService } = useOutletContext()
 
     return (
@@ -21,7 +23,11 @@ export default function ServiceRecords() {
                 alignItems="center"
                 spacing={3}
             >
-                {services.map((service) => <ServiceCard key={service.id} service={service} deleteService={deleteService} />)}
+                {services.map((service) => <ServiceCard
+                    key={service.id}
+                    service={service}
+                    editServiceRecord={editServiceRecord}
+                    deleteService={deleteService} />)}
             </Grid >
             <AddServiceRecord addServiceRecord={addServiceRecord} />
         </>
