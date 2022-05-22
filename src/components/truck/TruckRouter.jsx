@@ -2,7 +2,7 @@ import React from 'react'
 import { Container } from 'react-bootstrap'
 import { Routes, Route } from 'react-router-dom';
 import FuelingTable from './FuelingTable';
-import RepairTable from './RepairTable';
+import RepairRecords from './RepairRecords';
 import ServiceRecord from './ServiceRecords';
 import TruckNav from './TruckNav';
 import TrucksPage from '../../pages/TrucksPage';
@@ -18,7 +18,7 @@ export default function TruckRouter() {
                 <Route path="/" element={<TrucksPage />}>
                     <Route path="/" element={<TruckCardsDeck />} />
                     <Route path="service" element={<ServiceRecord />} />
-                    <Route path="repairs" element={<RepairTable />} />
+                    <Route path="repairs" element={<RepairRecords />} />
                     <Route path="fueling" element={<FuelingTable />} />
                 </Route>
             </Routes>

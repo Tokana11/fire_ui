@@ -22,6 +22,7 @@ export default function ServiceRecords() {
                 justifyContent="start"
                 alignItems="center"
                 spacing={3}
+                marginBottom={2}
             >
                 {services.map((service) => <ServiceCard
                     key={service.id}

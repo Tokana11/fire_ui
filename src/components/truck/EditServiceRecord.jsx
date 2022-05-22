@@ -243,6 +243,7 @@ export default function EditServiceRecord({ service, editServiceRecord }) {
                                                     message: 'Въвдете само цифри!'
                                                 }
                                             })}
+                                            helperText={errors.mileage?.message}
                                         />
                                     </Grid>
                                     < Grid item xs={6}>
@@ -257,6 +258,7 @@ export default function EditServiceRecord({ service, editServiceRecord }) {
                                                     message: 'Въвдете само цифри!'
                                                 }
                                             })}
+                                            helperText={errors.engineHoursMeter?.message}
                                         />
                                     </Grid>
                                 </Grid>

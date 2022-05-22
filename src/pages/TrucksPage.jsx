@@ -202,7 +202,7 @@ export default function TrucksPage() {
                 rearTiresQuantity: 0,
             },
             mileage: 158656,
-            engineHoursMeter: "332.6",
+            engineHoursMeter: 332.6,
             date: new Date("2021-12-01").toDateString(),
             filters: {
                 airFilter: "Air filter",
@@ -244,7 +244,8 @@ export default function TrucksPage() {
                 rearTiresChanged: false,
                 rearTiresQuantity: '',
             },
-            mileage: '',
+            mileage: 176656,
+            engineHoursMeter: 322.8,
             date: new Date("2021-09-01").toDateString(),
             filters: {
                 airFilter: 'Air filter',
@@ -287,7 +288,7 @@ export default function TrucksPage() {
                 rearTiresQuantity: 4,
             },
             mileage: 158656,
-            engineHoursMeter: "332.6",
+            engineHoursMeter: 332.6,
             date: new Date("2021-12-02").toDateString(),
             filters: {
                 airFilter: "Air filter",
@@ -330,7 +331,7 @@ export default function TrucksPage() {
                 rearTiresQuantity: 0,
             },
             mileage: 158656,
-            engineHoursMeter: "332.6",
+            engineHoursMeter: 332.6,
             date: new Date("2021-11-01").toDateString(),
             filters: {
                 airFilter: "Air filter",
@@ -373,8 +374,8 @@ export default function TrucksPage() {
                 rearTiresQuantity: 4,
             },
             mileage: 158656,
-            engineHoursMeter: "222.6",
-            date:  new Date("2021-12-18").toDateString(),
+            engineHoursMeter: 222.6,
+            date: new Date("2021-12-18").toDateString(),
             filters: {
                 airFilter: "",
                 airFilterChanged: false,
@@ -416,7 +417,7 @@ export default function TrucksPage() {
                 rearTiresQuantity: 0,
             },
             mileage: 158656,
-            engineHoursMeter: "112.6",
+            engineHoursMeter: 112.6,
             date: new Date("2021-04-20").toDateString(),
             filters: {
                 airFilter: "Air filter",
@@ -458,7 +459,8 @@ export default function TrucksPage() {
                 rearTiresChanged: true,
                 rearTiresQuantity: 4,
             },
-            mileage: 158656,
+            mileage: 33578,
+            engineHoursMeter: 132.5,
             date: new Date("2021-03-13").toDateString(),
             filters: {
                 airFilter: "Air filter",
@@ -501,7 +503,7 @@ export default function TrucksPage() {
                 rearTiresQuantity: 4,
             },
             mileage: 158656,
-            engineHoursMeter: "332.6",
+            engineHoursMeter: 332.6,
             date: new Date("2020-03-11").toDateString(),
             filters: {
                 airFilter: "Air filter",
@@ -523,71 +525,102 @@ export default function TrucksPage() {
             id: '1',
             regNumber: 'РВ6923РМ',
             structure: "01РСПБЗН",
-            date: new Date('2022-12-01').toLocaleDateString('bg'),
-            description: 'some repair',
+            date: new Date("2021-12-01").toDateString(),
+            mileage: 123456,
+            engineHoursMeter: 123.3,
+            description: "Ремонт кабина",
+            reportNumber:"123/31.11.2021",
+            message: 'Ремонт хидравлично бутало за повдигане на кабина.',
             price: 23.00
         },
         {
             id: '2',
             regNumber: 'РВ1837РР',
             structure: "01РСПБЗН",
-            date: new Date('2022-12-15').toLocaleDateString('bg'),
-            description: 'some repair',
+            date: new Date('2022-12-15').toDateString(),
+            mileage: 159753,
+            engineHoursMeter: 223.5,
+            description: "Ремонт кранове",
+            reportNumber:"129/13.12.2021",
+            message: 'Вулканизация на кранве нагнетателни отвестия № 3 и № 4.',
             price: 13.99
         },
         {
             id: '3',
             regNumber: 'РВ1836РР',
             structure: "01РСПБЗН",
-            date: new Date('2022-11-13').toLocaleDateString('bg'),
-            description: 'some repair',
+            date: new Date('2022-11-13').toDateString(),
+            mileage: 123456,
+            engineHoursMeter: 123.3,
+            description: "Ремонт спирачна система",
+            reportNumber:"111/13.11.2021",
+            message: 'Отстраняване на повреде, във спирачната система - щуцер за подаване на въздух от външен източник. Подмяна на маркучи и бързи връзки!',
             price: 157.33
         },
         {
             id: '4',
             regNumber: 'РВ5741ТР',
             structure: "УПБЗН-СЪЕДИНЕНИЕ",
-            date: new Date('2022-08-05').toLocaleDateString('bg'),
-            description: 'some repair',
+            date: new Date('2022-08-05').toDateString(),
+            mileage: 45789,
+            engineHoursMeter: 224.6,
+            description: "Ремонт запалителна с-ма",
+            reportNumber:"111/01.08.2021",
+            message: 'Рециклиране на стартер.',
             price: 45.00
         },
         {
             id: '5',
             regNumber: 'РВ0007ТР',
             structure: "УПБЗН-СЪЕДИНЕНИЕ",
-            date: new Date('2022-05-18').toLocaleDateString('bg'),
-            description: 'some repair',
+            date: new Date('2022-05-18').toDateString(),
+            mileage: 123456,
+            engineHoursMeter: 123.3,
+            description: "Ремонт ел. инсталация",
+            reportNumber:"111/01.08.2021",
+            message: 'Подмяна на главно реле - околни светлини.',
             price: 58.78
         },
         {
             id: '6',
             regNumber: 'РВ0007ТР',
             structure: "УПБЗН-СЪЕДИНЕНИЕ",
-            date: new Date('2022-04-20').toLocaleDateString('bg'),
-            description: 'some repair',
+            date: new Date('2022-04-20').toDateString(),
+            mileage: 87956,
+            engineHoursMeter: 153.3,
+            description: "Ремонт светлини",
+            reportNumber:"111/01.08.2021",
+            message: 'Подмяна на заден маяк.',
             price: 215.45
         },
         {
             id: '7',
             regNumber: 'РВ6923РМ',
             structure: "01 РСПБЗН",
-            date: new Date('2022-09-15').toLocaleDateString('bg'),
-            description: 'some repair',
+            date: new Date('2022-09-15').toDateString(),
+            mileage:758963,
+            engineHoursMeter: 335.4,
+            description: "Ремонт спирачна с-ма",
+            reportNumber:"111/01.08.2021",
+            message: 'Ремонт на пневматичен разпределител, елемент на спирачната система.',
             price: 147.78
         },
         {
             id: '8',
             regNumber: 'РВ3628АВ',
             structure: "01 РСПБЗН",
-            date: new Date('2021-11-03').toLocaleDateString('bg'),
-            description: 'some repair',
+            date: new Date('2021-11-03').toDateString(),
+            mileage: 123456,
+            engineHoursMeter: 123.3,
+            description: "Ремонт кабина",
+            reportNumber:"111/01.08.2021",
+            message: 'Подмяна на датчик за положението на кабината.',
             price: 159.77
         },
     ])
 
-
-
     const [ query, setQuery ] = useState('');
+
     const [ criteria, setCriteria ] = useState('regNumber');
 
     function addTruck(truck) {

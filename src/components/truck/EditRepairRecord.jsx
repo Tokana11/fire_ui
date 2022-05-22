@@ -11,9 +11,9 @@ import DatePicker from '@mui/lab/DatePicker';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
+import Grid from '@mui/material/Grid';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import TextField from '@mui/material/TextField';
-import Stack from '@mui/material/Stack';
 
 const localeMap = {
     bg: bgLocale
@@ -29,7 +29,7 @@ export default function EditRepairRecord({ repair, editRepairRecord }) {
 
     const regNumOptions = cards.map(item => item.regNumber);
 
-    const [ structure, setStructure ] = React.useState(repair.structure);
+    const [ structure, setStructure ] = React.useState('');
 
     const {
         register,
@@ -43,7 +43,11 @@ export default function EditRepairRecord({ repair, editRepairRecord }) {
             regNumber: repair.regNumber,
             structure: repair.structure,
             date: repair.date,
+            mileage: repair.mileage,
+            engineHoursMeter: repair.engineHoursMeter,
             description: repair.description,
+            reportNumber: repair.reportNumber,
+            message: repair.message,
             price: repair.price,
         }
     });
@@ -72,6 +76,8 @@ export default function EditRepairRecord({ repair, editRepairRecord }) {
 
     const editRecord = (data) => {
         data.structure = structure;
+        data.mileage = Number.parseFloat(data.mileage)
+        data.engineHoursMeter = Number.parseFloat(data.engineHoursMeter)
         data.price = Number.parseFloat(data.price)
         editRepairRecord(data)
         handleClose();
@@ -85,7 +91,7 @@ export default function EditRepairRecord({ repair, editRepairRecord }) {
                 sx={{ background: '#1a535c' }}
                 onClick={handleClickOpen}
             >
-                <CreateOutlinedIcon />
+                <CreateOutlinedIcon /> Редак.
             </Button>
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle>Добавяне на запис:</DialogTitle>
@@ -93,7 +99,7 @@ export default function EditRepairRecord({ repair, editRepairRecord }) {
                     <Box
                         component="form"
                         sx={{
-                            '& .MuiTextField-root': { m: 1, width: '25ch' },
+                            '& .MuiTextField-root': { m: 1 },
                         }}
                         onSubmit={handleSubmit((data) => {
                             let formatedDate = new Date(data.date).toLocaleDateString(locale)
@@ -102,86 +108,146 @@ export default function EditRepairRecord({ repair, editRepairRecord }) {
                             reset();
                         })}
                     >
-                        <Stack direction={'row'}>
-                            <Autocomplete
-                                id="outlined-basic"
-                                disablePortal
-                                defaultValue={repair.regNumber}
-                                options={regNumOptions}
-                                onChange={(_event, regNumber) => {
-                                    getStructuteByTruckRegNum(regNumber)
-                                }}
-                                renderInput={(params) => <TextField
-                                    {...params}
-                                    {...register("regNumber", {
-                                        required: 'Изберете автомобил!'
-                                    })}
-                                    label='Автомобил'
-                                    helperText={errors.regNumber?.message}
-                                />}
-                            />
-                        </Stack>
-                        <Stack direction={'row'}>
-                            <Controller
-                                control={control}
-                                name={'date'}
-                                render={({ field }) => (
-                                    <LocalizationProvider dateAdapter={AdapterDateFns} locale={localeMap[ locale ]}>
-                                        <DatePicker
-                                            label={'Дата'}
-                                            value={field.value}
-                                            onChange={(date) => handleChange(date, field)}
-                                            renderInput={(params) => (
-                                                <TextField  {...params} />
-                                            )}
+                        <Grid>
+                            <Grid item container direction={'row'} spacing={1}>
+                                <Grid item xs={6}>
+                                    <Autocomplete
+                                        disablePortal
+                                        value={repair.regNumber}
+                                        options={regNumOptions}
+                                        onChange={(_event, regNumber) => {
+                                            getStructuteByTruckRegNum(regNumber)
+                                        }}
+                                        renderInput={(params) => <TextField
+                                            {...params}
+                                            {...register("regNumber", {
+                                                required: 'Изберете автомобил!'
+                                            })}
+                                            label='Автомобил'
+                                            helperText={errors.regNumber?.message}
+                                        />}
+                                    />
+                                </Grid>
+                                <Grid item xs={6}>
+                                    <Controller
+                                        control={control}
+                                        name={'date'}
+                                        render={({ field }) => (
+                                            <LocalizationProvider dateAdapter={AdapterDateFns} locale={localeMap[ locale ]}>
+                                                <DatePicker
+                                                    label={'Дата'}
+                                                    value={field.value}
+                                                    onChange={(date) => handleChange(date, field)}
+                                                    renderInput={(params) => (
+                                                        <TextField style={{ left: 10 }} {...params} />
+                                                    )}
+                                                />
+                                            </LocalizationProvider>
+                                        )}
+                                    />
+                                </Grid>
+                                <Grid item container direction={'row'} >
+                                    <TextField
+                                        fullWidth
+                                        label="Вид на дейността:"
+                                        {...register("description", {
+                                            required: 'Въведете дейност!'
+                                        })}
+                                        helperText={errors.description?.message}
+                                    />
+                                </Grid>
+                                <Grid item container direction={'row'} spacing={1}>
+                                    <Grid item xs={6}>
+                                        <TextField
+                                            label="Километраж:"
+                                            variant="outlined"
+                                            fullWidth
+                                            {...register("mileage", {
+                                                required: 'Въведете показанията на километража!',
+                                                pattern: {
+                                                    value: /^\d+(\.\d{1,2})?$/,
+                                                    message: 'Въвдете само цифри!'
+                                                }
+                                            })}
+                                            helperText={errors.mileage?.message}
                                         />
-                                    </LocalizationProvider>
-                                )}
-                            />
-                        </Stack>
-                        <Stack direction={'row'}>
-                            <TextField
-                                id="outlined-basic"
-                                label="Описание"
-                                variant="outlined"
-                                {...register("description", {
-                                    required: 'Въведете описание на извършената дейност!',
-                                })}
-                                helperText={errors.description?.message}
-                            />
-                        </Stack>
-                        <Stack direction={'row'}>
-                            <TextField
-                                id="outlined-basic"
-                                label="Цена"
-                                variant="outlined"
-                                {...register("price", {
-                                    required: 'Въведете цена!',
-                                    pattern: {
-                                        value: /^\d+(\.\d{1,2})?$/,
-                                        message: 'Въвдете само цифри!'
-                                    }
-                                })}
-                                helperText={errors.price?.message}
-                            />
-                        </Stack>
-                        <div style={{ float: 'right' }}>
-                            <Button
-                                variant='contained'
-                                color='error'
-                                onClick={handleClose}
+                                    </Grid>
+                                    < Grid item xs={6}>
+                                        <TextField
+                                            label="Моточасовник:"
+                                            variant="outlined"
+                                            style={{ width: '95%' }}
+                                            {...register("engineHoursMeter", {
+                                                required: 'Въведете показанията на моточасовника!',
+                                                pattern: {
+                                                    value: /^\d+(\.\d{1,2})?$/,
+                                                    message: 'Въвдете само цифри!'
+                                                }
+                                            })}
+                                            helperText={errors.engineHoursMeter?.message}
+                                        />
+                                    </Grid>
+                                </Grid>
+
+                                <Grid item container direction={'row'} spacing={1}>
+                                    <Grid item xs={6}>
+                                        <TextField
+                                            label="Докладна №:"
+                                            variant="outlined"
+                                            fullWidth
+                                            type={'text'}
+                                            {...register("reportNumber")}
+                                        />
+                                    </Grid>
+                                    < Grid item xs={6}>
+                                        <TextField
+                                            label="Цена:"
+                                            variant="outlined"
+                                            style={{ width: '95%' }}
+                                            {...register("price", {
+                                                required: 'Въведете цена!',
+                                                pattern: {
+                                                    value: /^\d+(\.\d{1,2})?$/,
+                                                    message: 'Въвдете само цифри!'
+                                                }
+                                            })}
+                                            helperText={errors.price?.message}
+                                        />
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+                            <Grid item container direction={'row'} >
+                                <TextField
+                                    fullWidth
+                                    label="Друго:"
+                                    multiline
+                                    rows={2}
+                                    {...register("message")}
+                                />
+                            </Grid>
+                            <Grid
+                                item
+                                container
+                                justifyContent="space-between"
+                                alignItems="flex-end"
                             >
-                                Отказ
-                            </Button>
-                            {' '}
-                            <Button
-                                variant='contained'
-                                color='success'
-                                type='submit'
-                            >
-                                Запиши
-                            </Button>
-                        </div>
+                                <Button
+                                    variant='contained'
+                                    color='error'
+                                    onClick={handleClose}
+                                >
+                                    Отказ
+                                </Button>
+                                {' '}
+                                <Button
+                                    variant='contained'
+                                    color='success'
+                                    type='submit'
+                                >
+                                    Запиши
+                                </Button>
+                            </Grid>
+                        </Grid>
                     </Box>
                 </DialogContent>
             </Dialog >

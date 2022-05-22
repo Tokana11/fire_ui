@@ -242,24 +242,23 @@ export default function ServiceCard({ service, editServiceRecord, deleteService 
                 <CardMedia
                     component="img"
                     alt="maintenance image"
-                    height="140"
+                    height="155"
                     image={Image}
                 />
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
                         {service.regNumber}
-
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
                         {service.structure}
+                        <br />
+                        <b>Описание:</b> {service.description}
                         <br />
                         <b>Дата:</b> {service.date}
                         <br />
                         <b>Киломeтраж:</b> {service.mileage} км
                         <br />
                         <b>Моточасовник:</b> {service.engineHoursMeter} м/ч
-                        <br />
-                        <b>Описание:</b> {service.description}
                     </Typography>
                 </CardContent>
                 <CardActions>
